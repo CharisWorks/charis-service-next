@@ -1,5 +1,7 @@
 "use client"
 
+import { MeiliItem, MeiliItemHit } from "./meili"
+
 const backend_address = process.env.NEXT_PUBLIC_BACKEND_ADDRESS ?? "http://localhost"
 const backend_port = process.env.NEXT_PUBLIC_BACKEND_PORT ?? "8080"
 const checkoutFetcher = async (url: string, payload: CheckoutPayload) => {
@@ -40,6 +42,17 @@ export const Checkout = async (params: { itemId: number, quantity: number }) => 
     return {
         data: data as PurchaseLink | undefined,
 
+    }
+}
+
+export const GetItem = async (params: string) => {
+    const rawURL = new URL(`${backend_address}:${backend_port}`)
+    rawURL.pathname = `/item/${params}`
+    const url = rawURL.toString()
+    const res = await fetch(url)
+    const data = await res.json()
+    return {
+        data: data as MeiliItemHit | undefined,
     }
 }
 type CheckoutPayload = {

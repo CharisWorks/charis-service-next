@@ -1,22 +1,21 @@
 "use client";
 import { useEffect, useState } from "react";
 import Description from "./description";
-import { MeiliItemHit, Search } from "@/api/meili";
+import { MeiliItemHit } from "@/api/meili";
+import { GetItem } from "@/api/gobackend";
 
 export default function ItemPage({ params }: { params: { slug: string } }) {
-  const [items, setItems] = useState<MeiliItemHit[]>([]);
+  const [item, setItems] = useState<MeiliItemHit>();
   useEffect(() => {
     const fetchItems = async () => {
-      const { data } = await Search([params.slug]);
-      if (data?.hits) {
-        setItems(data.hits);
-      }
+      const { data } = await GetItem(params.slug);
+      setItems(data);
     };
     fetchItems();
   }, [params.slug]);
   return (
     <div>
-      <Description overview={items[0]?.description ?? ""} />
+      <Description overview={item?.description ?? ""} />
     </div>
   );
 }
