@@ -34,7 +34,7 @@ export const Search = async (params?: string[]) => {
     }
 }
 
-type MeiliItem = {
+export type MeiliItem = {
     estimatedTotalHits: number
     offset: number
     limit: number
@@ -43,7 +43,7 @@ type MeiliItem = {
     hits: MeiliItemHit[]
 }
 
-type MeiliItemHit = {
+export type MeiliItemHit = {
     id: string
     createdAt: string
     updatedAt: string
