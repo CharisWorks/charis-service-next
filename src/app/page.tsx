@@ -1,14 +1,47 @@
 "use client";
 import React, { useState } from "react";
 import { Checkout } from "@/api/gobackend";
-import { Search } from "@/api/meili";
+import { MeiliItemHit, Search } from "@/api/meili";
+import { Container } from "@mui/material";
+import ItemCard from "./_components/card";
+import Grid from "@mui/material/Grid";
 export default function Home() {
   const [keyword, setKeyword] = useState("");
   const [itemId, setItemId] = useState(0);
   const [quantity, setQuantity] = useState(0);
+  const [items, setItems] = useState<MeiliItemHit[]>([]);
   return (
     <>
-      <h1>Search</h1>
+      <Container maxWidth="lg">
+        <input
+          type="text"
+          onChange={(e) => {
+            setKeyword(e.target.value);
+          }}
+        />
+        <button
+          onClick={async () => {
+            const { data } = await Search([keyword]);
+            if (data?.hits) {
+              setItems(data.hits);
+            }
+            console.log(data);
+          }}
+        >
+          検索！！
+        </button>
+        <Grid container spacing={2}>
+          {items.map((item, key) => {
+            return (
+              <Grid item xs={4} key={key}>
+                <ItemCard item={item} />
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Container>
+
+      {/* <h1>Search</h1>
       <div>
         <input
           type="text"
@@ -50,7 +83,7 @@ export default function Home() {
         >
           購入！！
         </button>
-      </div>
+      </div> */}
     </>
   );
 }
