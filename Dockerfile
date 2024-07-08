@@ -1,20 +1,10 @@
-# ベースイメージとしてNode.jsを使用
-FROM node:18-alpine
+FROM node:20-alpine
 
-# 作業ディレクトリの設定
-WORKDIR /app
+WORKDIR /next
 
-# パッケージをコピー
-COPY package.json  ./
-
-# 依存関係をインストール
-RUN npm install
-
-# プロジェクトファイルをコピー
 COPY . .
 
-# ビルドコマンドの実行
-RUN npm run build   
+RUN npm install
+RUN npm run build
 
-# アプリケーションの起動コマンド
-CMD ["npm", "run","dev"]
+CMD ["npm", "start"]
