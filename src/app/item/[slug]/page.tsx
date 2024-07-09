@@ -90,7 +90,7 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
             value={1}
             label="数量"
             onChange={(e) => {
-              setQuantity(e.target.value);
+              setQuantity(e.target.value as number);
             }}
           >
             <MenuItem value={1}>1</MenuItem>

@@ -87,14 +87,14 @@ export default function Home() {
             width: "80%",
             mb: 5,
           }}
-          onChange={(e) => {
-            setKeyword(e.target.value);
-          }}
         >
           <InputBase
             sx={{ ml: 1, flex: 1 }}
             placeholder="Search"
             inputProps={{ "aria-label": "search" }}
+            onChange={(e) => {
+              setKeyword(e.target.value);
+            }}
           />
           <IconButton
             type="button"
