@@ -6,11 +6,12 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { MeiliItemHit } from "@/api/meili";
-
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Grid } from "@mui/material";
 
 export default function ItemCard(props: { item: MeiliItemHit }) {
+  const router = useRouter();
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -33,10 +34,17 @@ export default function ItemCard(props: { item: MeiliItemHit }) {
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           {props.item.worker}
         </Typography>
-        <Typography variant="body2">{props.item.price}</Typography>
+        <Typography variant="body2">￥{props.item.price}</Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Details</Button>
+        <Button
+          size="small"
+          onClick={() => {
+            router.push(`/item/${props.item.id}`);
+          }}
+        >
+          Details
+        </Button>
       </CardActions>
     </Card>
   );
