@@ -1,8 +1,11 @@
 import * as React from "react";
 import { MeiliItemHit } from "@/api/meili";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-export default function ItemCard(props: { item: MeiliItemHit }) {
+const ItemCard = (props: { item: MeiliItemHit }) => {
+  const router = useRouter();
+
   return (
     <div>
       <div>
@@ -28,8 +31,11 @@ export default function ItemCard(props: { item: MeiliItemHit }) {
         <div>{props.item.price}</div>
       </div>
       <div>
-        <button>Details</button>
+        <button onClick={() => { router.push(`item/${props.item.id}`) }}>Details</button>
       </div>
     </div>
   );
 }
+
+export default ItemCard;
+

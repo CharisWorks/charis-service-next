@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import { Checkout } from "@/api/gobackend";
 import { MeiliItemHit, Search } from "@/api/meili";
-import ItemCard from "./_components/card";
-export default function Home() {
+import ItemCard from "./_components/Card";
+
+const Home = () => {
   const [keyword, setKeyword] = useState("");
   const [itemId, setItemId] = useState(0);
   const [quantity, setQuantity] = useState(0);
@@ -41,3 +42,6 @@ export default function Home() {
     </>
   );
 }
+
+export default Home;
+
