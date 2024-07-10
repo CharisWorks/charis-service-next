@@ -1,7 +1,11 @@
 import "./globals.css"
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-const inter = Inter({ subsets: ["latin"] });
+import { Noto_Serif_JP } from "next/font/google";
+
+const inter = Noto_Serif_JP({
+  weight: ["400"],
+  subsets: ["latin"]
+});
 
 export const metadata: Metadata = {
   title: 'charis WORKs',
