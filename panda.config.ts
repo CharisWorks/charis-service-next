@@ -12,7 +12,15 @@ export default defineConfig({
 
   // Useful for theme customization
   theme: {
-    extend: {},
+    extend: {
+      semanticTokens: {
+        colors: {
+          night: { value: "#002D52" },
+          star: { value: "#BFA45E" }
+        }
+      },
+      breakpoints: {}
+    },
   },
 
   // The output directory for your css system
