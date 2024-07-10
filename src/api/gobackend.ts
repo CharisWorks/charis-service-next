@@ -21,7 +21,7 @@ const checkoutFetcher = async (url: string, payload: CheckoutPayload) => {
 }
 
 export const Checkout = async (params: { itemId: number, quantity: number }) => {
-    const rawURL = new URL(`${backend_address}:${backend_port}`)
+    const rawURL = new URL(backend_address ?? `${backend_address}:${backend_port}`)
     rawURL.pathname = '/checkout'
     console.log("params:", params)
     if (!params.itemId) {
@@ -46,7 +46,7 @@ export const Checkout = async (params: { itemId: number, quantity: number }) => 
 }
 
 export const GetItem = async (params: string) => {
-    const rawURL = new URL(`${backend_address}:${backend_port}`)
+    const rawURL = new URL(backend_address ?? `${backend_address}:${backend_port}`)
     rawURL.pathname = `/item/${params}`
     const url = rawURL.toString()
     const res = await fetch(url)
