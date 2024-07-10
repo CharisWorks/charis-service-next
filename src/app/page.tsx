@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { Checkout } from "@/api/gobackend";
 import { MeiliItemHit, Search } from "@/api/meili";
 import ItemCard from "./_components/Card";
-import { css } from "../../styled-system/css";
 
+import { css } from "../../styled-system/css";
 const Home = () => {
   const [keyword, setKeyword] = useState("");
   const [itemId, setItemId] = useState(0);
@@ -13,8 +13,8 @@ const Home = () => {
 
   const container = css({
     bgColor: "colors.night",
-    width: "100%"
-  })
+    width: "100%",
+  });
 
   return (
     <>
@@ -45,11 +45,14 @@ const Home = () => {
             );
           })}
         </div>
-        <p className={css({ fontSize: "2xl", fontStyle: "bold", color: "star" })}>Hello</p>
+        <p
+          className={css({ fontSize: "2xl", fontStyle: "bold", color: "star" })}
+        >
+          Hello
+        </p>
       </div>
     </>
   );
-}
+};
 
 export default Home;
-
