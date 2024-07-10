@@ -2,7 +2,7 @@ import "./globals.css"
 import type { Metadata } from "next";
 import { Noto_Serif_JP } from "next/font/google";
 
-const inter = Noto_Serif_JP({
+const font = Noto_Serif_JP({
   weight: ["400"],
   subsets: ["latin"]
 });
@@ -50,7 +50,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={inter.className}>{children}</body>
+      <body className={font.className}>{children}</body>
     </html>
   );
 }
