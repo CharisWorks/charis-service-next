@@ -41,7 +41,15 @@ const Home = () => {
 
   const buttonWrapper = css({
     width: "100%"
-  })
+  });
+
+  const innerButtonWrapper = css({
+    marginTop: "30px",
+    marginRight: "auto",
+    marginLeft: "auto",
+    width: "200px",
+    height: "37px",
+  });
 
   return (
     <>
@@ -56,13 +64,15 @@ const Home = () => {
           placeholder="SEARCH"
         />
         <div className={buttonWrapper} >
-          <Button name="検索" clickHandler={async () => {
-            const { data } = await Search([keyword]);
-            if (data?.hits) {
-              setItems(data.hits);
-            }
-            console.log(data);
-          }} />
+          <div className={innerButtonWrapper}>
+            <Button name="検索" clickHandler={async () => {
+              const { data } = await Search([keyword]);
+              if (data?.hits) {
+                setItems(data.hits);
+              }
+              console.log(data);
+            }} />
+          </div>
         </div>
         <div>
           {items.map((item, key) => {
@@ -73,11 +83,6 @@ const Home = () => {
             );
           })}
         </div>
-        <p
-          className={css({ fontSize: "2xl", fontStyle: "bold", color: "star" })}
-        >
-          Hello
-        </p>
       </div >
     </>
   );
