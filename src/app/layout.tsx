@@ -1,7 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Noto_Serif_JP } from "next/font/google";
-import "../../index.css";
+import { css } from "../../styled-system/css";
+
 const font = Noto_Serif_JP({
   weight: ["400"],
   subsets: ["latin"],
@@ -48,9 +49,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const base = css({
+    bgColor: "night",
+    height: "100lvh",
+    width: "100%",
+  })
   return (
     <html lang="ja">
-      <body className={font.className}>{children}</body>
+      <body className={font.className}>
+        <div className={base}>
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
