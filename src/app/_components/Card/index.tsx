@@ -6,48 +6,51 @@ import { css } from "../../../../styled-system/css";
 
 const ItemCard = (props: { item: MeiliItemHit }) => {
   const router = useRouter();
-  const card = css({
+
+  const cardButtonWrapper = () => {
+    router.push(`item/${props.item.id}`);
+  }
+
+  const cardStyle = css({
     bgColor: "night",
     width: "260px",
     padding: "2",
   });
+  const imageWrapperStyle = css({
+    width: "150px",
+    height: "150px",
+    marginLeft: "auto",
+    marginRight: "auto",
+  });
+  const imageStyle = css({
+    borderRadius: "50%",
+    width: "auto",
+    height: "100%",
+  });
+  const workerStyle = css({
+    marginTop: "20px",
+    fontSize: "12px",
+    color: "star",
+    display: "flex",
+    justifyContent: "flex-end",
+  });
+
 
   return (
-    <div className={card}>
+    <div className={cardStyle}>
       <div>
-        <button
-          onClick={() => {
-            router.push(`item/${props.item.id}`);
-          }}
-        >
-          <div>
-            <div
-              className={css({
-                display: "flex",
-                justifyContent: "center",
-              })}
-            >
-              <Image
-                src={props.item.thumbnail_url}
-                width={"150"}
-                height={"150"}
-                alt="Picture of the author"
-                className={css({
-                  borderRadius: "50%",
-                  width: "150px",
-                  height: "150px",
-                })}
-              />
-            </div>
+        <button onClick={cardButtonWrapper}>
+          <div className={imageWrapperStyle}>
+            <Image
+              src={props.item.thumbnail_url}
+              width={0}
+              height={0}
+              sizes="100vw"
+              className={imageStyle}
+              alt={'Picture of the author'}
+            />
           </div>
-          <div
-            className={css({
-              fontSize: "12px",
-              color: "star",
-              display: "flex",
-              justifyContent: "flex-end",
-            })}
-          >
+          <div className={workerStyle}>
             {props.item.worker}
           </div>
           <div

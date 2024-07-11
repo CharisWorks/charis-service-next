@@ -15,6 +15,9 @@ const Home = () => {
   const container = css({
     bgColor: "night",
     width: "100%",
+    maxWidth: "1024px",
+    marginLeft: "auto",
+    marginRight: "auto",
     height: "100vh"
   });
 
