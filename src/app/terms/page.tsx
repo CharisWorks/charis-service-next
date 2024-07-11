@@ -78,13 +78,11 @@ const term = `
 
 2024年07月12日制定
 `;
-const Home = () => {
+const Terms = () => {
   const container = css({
     bgColor: "night",
     width: "100%",
     paddingTop: "74px",
-    paddingLeft: "160px",
-    paddingRight: "180px",
   });
 
   const title = css({
@@ -107,4 +105,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Terms;

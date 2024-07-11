@@ -15,14 +15,12 @@ const faq: { question: string; answer: string }[] = [
       "送料は全国一律300円です。送料無料オプションは今後導入するかもしれません。",
   },
 ];
-const Home = () => {
+const FAQ = () => {
   const container = css({
     bgColor: "night",
     width: "100%",
     height: "100vh",
     paddingTop: "74px",
-    paddingLeft: "160px",
-    paddingRight: "180px",
   });
 
   const title = css({
@@ -46,7 +44,13 @@ const Home = () => {
           {faq.map((item, index) => {
             return (
               <div key={index} className={body}>
-                <h2 className={css({ fontSize: "30px", fontStyle: "bold" })}>
+                <h2
+                  className={css({
+                    fontSize: "30px",
+                    fontStyle: "bold",
+                    paddingBottom: "12px",
+                  })}
+                >
                   {item.question}
                 </h2>
                 <p className={css({ fontSize: "20px", fontStyle: "bold" })}>
@@ -61,4 +65,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default FAQ;
