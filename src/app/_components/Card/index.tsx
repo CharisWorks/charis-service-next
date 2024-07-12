@@ -9,12 +9,11 @@ const ItemCard = (props: { item: MeiliItemHit }) => {
 
   const cardButtonWrapper = () => {
     router.push(`item/${props.item.id}`);
-  }
+  };
 
   const cardStyle = css({
+    width: "265px",
     bgColor: "night",
-    width: "260px",
-    padding: "2",
   });
   const imageWrapperStyle = css({
     width: "150px",
@@ -28,55 +27,93 @@ const ItemCard = (props: { item: MeiliItemHit }) => {
     height: "100%",
   });
   const workerStyle = css({
-    marginTop: "20px",
     fontSize: "12px",
+    width: "100%",
+    textAlign: "end",
+    marginTop: "20px",
     color: "star",
-    display: "flex",
-    justifyContent: "flex-end",
+  });
+  const costStyle = css({
+    fontSize: "16px",
+    width: "100%",
+    textAlign: "start",
+    fontWeight: 700,
+    color: "star",
+  });
+  const itemNameStyle = css({
+    width: "100%",
+    textAlign: "center",
+    fontSize: "24px",
+    fontWeight: 700,
+    color: "star",
   });
 
+  const upperDivStyle = css({
+    width: "260px",
+    border: "3px solid #BFA45E",
+    bgColor: "night",
+    padding: "10px",
+  });
+  const bottomDivStyle = css({
+    width: "260px",
+    border: "3px solid #BFA45E",
+    bgColor: "night",
+    padding: "10px",
+    marginLeft: "5px",
+  });
+
+  const dummyWorkerStyle = css({
+    fontSize: "12px",
+    width: "100%",
+    textAlign: "end",
+    marginTop: "20px",
+    color: "rgba(0,0,0,0)",
+  });
+  const dummyCostStyle = css({
+    fontSize: "16px",
+    width: "100%",
+    textAlign: "start",
+    fontWeight: 700,
+    color: "rgba(0,0,0,0)",
+  });
+  const dummyItemNameStyle = css({
+    width: "100%",
+    textAlign: "center",
+    fontSize: "24px",
+    fontWeight: 700,
+    color: "rgba(0,0,0,0)",
+  });
 
   return (
-    <div className={cardStyle}>
-      <div>
-        <button onClick={cardButtonWrapper}>
-          <div className={imageWrapperStyle}>
-            <Image
-              src={props.item.thumbnail_url}
-              width={0}
-              height={0}
-              sizes="100vw"
-              className={imageStyle}
-              alt={'Picture of the author'}
-            />
-          </div>
-          <div className={workerStyle}>
-            {props.item.worker}
-          </div>
-          <div
-            className={css({
-              fontSize: "16px",
-              fontWeight: 700,
-              color: "star",
-              display: "flex",
-              justifyContent: "flex-start",
-            })}
-          >
-            ￥{props.item.price}
-          </div>
-          <div
-            className={css({
-              width: "240px",
-              fontSize: "24px",
-              fontWeight: 700,
-              color: "star",
-            })}
-          >
-            {props.item.item_name}
-          </div>
-        </button>
+    <button className={cardStyle} onClick={cardButtonWrapper}>
+      <div className={upperDivStyle}>
+        <div className={imageWrapperStyle}>
+          <Image
+            src={props.item.thumbnail_url}
+            width={0}
+            height={0}
+            sizes="100vw"
+            className={imageStyle}
+            alt={"Picture of the author"}
+          />
+        </div>
+        <p className={workerStyle}>{props.item.worker}</p>
+        <p className={costStyle}>￥{props.item.price}</p>
+        <h2 className={itemNameStyle}>{props.item.item_name}</h2>
       </div>
-    </div>
+      <div className={bottomDivStyle}>
+        <div className={imageWrapperStyle}></div>
+        <p className={dummyWorkerStyle}>
+          {props.item.worker}
+        </p>
+        <p className={dummyCostStyle}>
+          ￥{props.item.price}
+        </p>
+        <h2 className={dummyItemNameStyle}>
+          {props.item.item_name}
+        </h2>
+      </div>
+    </button>
   );
 };
 

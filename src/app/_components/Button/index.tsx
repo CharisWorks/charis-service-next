@@ -1,19 +1,19 @@
 import { css } from "../../../../styled-system/css";
 
 const Button = (props: { name: string, clickHandler: () => void }) => {
-  const button = css({
+  const buttonStyle = css({
     color: "star",
     width: "205px",
     height: "43px",
     cursor: "pointer",
   });
-  const topDiv = css({
+  const topDivStyle = css({
     width: "200px",
     height: "37px",
     border: "3px solid #BFA45E",
     bgColor: "night",
   });
-  const bottomDiv = css({
+  const bottomDivStyle = css({
     width: "200px",
     height: "37px",
     border: "3px solid #BFA45E",
@@ -23,9 +23,9 @@ const Button = (props: { name: string, clickHandler: () => void }) => {
   });
 
   return (
-    <button className={button} onClick={props.clickHandler}>
-      <div className={topDiv}>{props.name}</div>
-      <div className={bottomDiv}></div>
+    <button className={buttonStyle} onClick={props.clickHandler}>
+      <div className={topDivStyle}>{props.name}</div>
+      <div className={bottomDivStyle}></div>
     </button>
   );
 }

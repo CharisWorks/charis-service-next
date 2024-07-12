@@ -49,7 +49,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const base = css({
+  const baseStyle = css({
     bgColor: "night",
     height: "100lvh",
     width: "100%",
@@ -57,7 +57,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={font.className}>
-        <div className={base}>
+        <div className={baseStyle}>
           {children}
         </div>
       </body>
