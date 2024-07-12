@@ -19,9 +19,12 @@ const Faq = () => {
   const containerStyle = css({
     bgColor: "night",
     width: "100%",
-    maxWidth: "1024px",
+    maxWidth: "1044px",
     minHeight: "100lvh",
     paddingTop: "185px",
+    paddingBottom: "100px",
+    paddingRight: "10px",
+    paddingLeft: "10px",
     marginLeft: "auto",
     marginRight: "auto",
   });
@@ -48,7 +51,7 @@ const Faq = () => {
   return (
     <>
       <div className={containerStyle}>
-        <h1 className={titleStyle}>F & Q</h1>
+        <h1 className={titleStyle}>Q & A</h1>
         <div>
           {faq.map((item, index) => {
             return (

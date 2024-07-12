@@ -35,7 +35,7 @@
 
   /* Set core body defaults */
   body {
-    min-height: 100vh;
+    min-height: 100lvh;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
   }

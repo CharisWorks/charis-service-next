@@ -1,36 +1,9 @@
 "use client";
 import React from "react";
 import { css } from "../../../styled-system/css";
-import markdownToHtml from "zenn-markdown-html";
+import Markdown from "react-markdown";
 
-const Description = (props: { body: string }) => {
-  const html = markdownToHtml(decodeURIComponent(props.body));
-  return (
-    <div
-      className={css({ color: "star" })}
-      dangerouslySetInnerHTML={{ __html: html ?? "" }}
-    ></div>
-  );
-};
-
-const Terms = () => {
-  const containerStyle = css({
-    bgColor: "night",
-    width: "100%",
-    maxWidth: "1024px",
-    minHeight: "100lvh",
-    paddingTop: "185px",
-    marginLeft: "auto",
-    marginRight: "auto",
-  });
-  const titleStyle = css({
-    color: "star",
-    fontSize: "40px",
-    textAlign: "center",
-    marginBottom: "60px",
-  });
-
-  const term = `
+const term = `
 # 個人情報保護方針（プライバシーポリシー）
 
 ## 第１条（個人情報保護体制の確立）
@@ -91,13 +64,49 @@ const Terms = () => {
 2024年07月12日制定
 `;
 
+const Terms = () => {
+  const containerStyle = css({
+    bgColor: "night",
+    width: "100%",
+    maxWidth: "1044px",
+    minHeight: "100lvh",
+    paddingTop: "185px",
+    paddingBottom: "100px",
+    paddingRight: "10px",
+    paddingLeft: "10px",
+    marginLeft: "auto",
+    marginRight: "auto",
+  });
+  const titleStyle = css({
+    color: "star",
+    fontSize: "40px",
+    textAlign: "center",
+    marginBottom: "60px",
+  });
+  const termStyle = css({
+    color: "star",
+    "& h1": {
+      fontSize: "25px",
+      marginTop: "10px",
+      marginBottom: "10px",
+    },
+    "& h2": {
+      fontSize: "20px",
+      marginTop: "10px",
+      marginBottom: "10px",
+    },
+    "& p": {
+      fontSize: "16px",
+      marginTop: "10px",
+      marginBottom: "10px",
+    },
+  });
+
   return (
     <>
       <div className={containerStyle}>
         <h1 className={titleStyle}>プライバシーポリシー</h1>
-        <div>
-          <Description body={term} />
-        </div>
+        <Markdown className={termStyle}>{term}</Markdown>
       </div>
     </>
   );
