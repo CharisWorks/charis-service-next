@@ -44,23 +44,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   const baseStyle = css({
     bgColor: "night",
-    height: "100lvh",
     width: "100%",
-  })
+  });
   return (
     <html lang="ja">
       <body className={font.className}>
-        <div className={baseStyle}>
-          {children}
-        </div>
+        <div className={baseStyle}>{children}</div>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

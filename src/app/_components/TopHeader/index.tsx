@@ -41,7 +41,7 @@ const TopHeader = () => {
         <div className={LinkBoxStyle}>
           <Link href="/about">charis WORKsについて</Link>
           <br />
-          <Link href="/faq">Q & A</Link>
+          <Link href="/faq">F & Q</Link>
           <br />
           <Link href="/terms">プライバシーポリシー</Link>
         </div>

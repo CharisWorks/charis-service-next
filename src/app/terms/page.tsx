@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-
 import { css } from "../../../styled-system/css";
 import markdownToHtml from "zenn-markdown-html";
 
@@ -8,17 +7,30 @@ const Description = (props: { body: string }) => {
   const html = markdownToHtml(decodeURIComponent(props.body));
   return (
     <div
-      className={body}
+      className={css({ color: "star" })}
       dangerouslySetInnerHTML={{ __html: html ?? "" }}
     ></div>
   );
 };
-const body = css({
-  color: "star",
-  textAlign: "left",
-});
 
-const term = `
+const Terms = () => {
+  const containerStyle = css({
+    bgColor: "night",
+    width: "100%",
+    maxWidth: "1024px",
+    minHeight: "100lvh",
+    paddingTop: "185px",
+    marginLeft: "auto",
+    marginRight: "auto",
+  });
+  const titleStyle = css({
+    color: "star",
+    fontSize: "40px",
+    textAlign: "center",
+    marginBottom: "60px",
+  });
+
+  const term = `
 # 個人情報保護方針（プライバシーポリシー）
 
 ## 第１条（個人情報保護体制の確立）
@@ -78,25 +90,11 @@ const term = `
 
 2024年07月12日制定
 `;
-const Terms = () => {
-  const container = css({
-    bgColor: "night",
-    width: "100%",
-    paddingTop: "74px",
-  });
-
-  const title = css({
-    color: "star",
-    fontSize: "40px",
-    textAlign: "center",
-    fontStyle: "bold",
-    paddingBottom: "60px",
-  });
 
   return (
     <>
-      <div className={container}>
-        <h1 className={title}>プライバシーポリシー</h1>
+      <div className={containerStyle}>
+        <h1 className={titleStyle}>プライバシーポリシー</h1>
         <div>
           <Description body={term} />
         </div>

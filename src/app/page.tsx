@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Checkout } from "@/api/gobackend";
+//import { Checkout } from "@/api/gobackend";
 import { MeiliItemHit, Search } from "@/api/meili";
 import Card from "./_components/Card";
 import Button from "./_components/Button";
@@ -29,7 +29,7 @@ const Home = () => {
     maxWidth: "1024px",
     marginLeft: "auto",
     marginRight: "auto",
-    height: "100vh",
+    minHeight: "100lvh",
   });
   const titleStyle = css({
     color: "star",
@@ -148,15 +148,15 @@ const Home = () => {
         </div>
         <div className={searchDivStyle}></div>
         <div>
-          {items.map((item, key) => {
+          {items.map((item, index) => {
             if (item.genre === braceletOrRibbon) {
               return (
-                <div key={key}>
+                <div key={index}>
                   <Card item={item} />
                 </div>
               );
             } else {
-              return <div key={key}></div>;
+              return <React.Fragment key={index}></React.Fragment>;
             }
           })}
         </div>
