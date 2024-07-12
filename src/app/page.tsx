@@ -4,14 +4,24 @@ import { Checkout } from "@/api/gobackend";
 import { MeiliItemHit, Search } from "@/api/meili";
 import Card from "./_components/Card";
 import Button from "./_components/Button";
-import TopHeader from "./_components/TopHeader"
+import TopHeader from "./_components/TopHeader";
+import GenreButton from "./_components/GenreButton";
 import { css } from "../../styled-system/css";
 
 const Home = () => {
   const [keyword, setKeyword] = useState("");
-  const [itemId, setItemId] = useState(0);
-  const [quantity, setQuantity] = useState(0);
+  //const [itemId, setItemId] = useState(0);
+  //const [quantity, setQuantity] = useState(0);
   const [items, setItems] = useState<MeiliItemHit[]>([]);
+  const [braceletOrRibbon, setBraceletOrRibbon] = useState("bracelet");
+
+  //genre
+  const choiceBracelet = () => {
+    setBraceletOrRibbon("bracelet");
+  };
+  const choiceRibbon = () => {
+    setBraceletOrRibbon("ribbon");
+  };
 
   const containerStyle = css({
     bgColor: "night",
@@ -19,12 +29,12 @@ const Home = () => {
     maxWidth: "1024px",
     marginLeft: "auto",
     marginRight: "auto",
-    height: "100vh"
+    height: "100vh",
   });
   const titleStyle = css({
     color: "star",
     fontSize: "30px",
-    textAlign: "center"
+    textAlign: "center",
   });
   const searchStyle = css({
     margin: "30px auto 0px",
@@ -37,11 +47,11 @@ const Home = () => {
     width: "100%",
     height: "50px",
     _placeholder: {
-      color: "star.700"
-    }
+      color: "star.700",
+    },
   });
   const buttonWrapperStyle = css({
-    width: "100%"
+    width: "100%",
   });
   const innerButtonWrapperStyle = css({
     marginTop: "30px",
@@ -50,16 +60,36 @@ const Home = () => {
     width: "200px",
     height: "37px",
   });
-  const searchDiv = css({
+  const genreStyle = css({
+    color: "star",
+    fontSize: "30px",
+    textAlign: "center",
+    marginTop: "30px",
+    marginBottom: "30px",
+  });
+  const genreButtonStyle = css({
+    width: "100%",
+  });
+  const genreButtonInnerStyle = css({
+    display: "flex",
+    width: "fit-content",
+    marginLeft: "auto",
+    marginRight: "auto",
+  });
+  const genreButtonSpaceStyle = css({
+    width: "30px",
+    height: "43px",
+  });
+  const searchDivStyle = css({
     width: "100%",
     height: "50px",
-  })
+  });
 
   return (
     <>
       <div className={containerStyle}>
         <TopHeader />
-        <h1 className={titleStyle}>ブレスレッドを探すたびにでかけませんか？</h1>
+        <h1 className={titleStyle}>美しいものを探す旅にでかけませんか？</h1>
         <input
           type="text"
           onChange={(e) => {
@@ -68,28 +98,69 @@ const Home = () => {
           className={searchStyle}
           placeholder="SEARCH"
         />
-        <div className={buttonWrapperStyle} >
+        <div className={buttonWrapperStyle}>
           <div className={innerButtonWrapperStyle}>
-            <Button name="検索" clickHandler={async () => {
-              const { data } = await Search([keyword]);
-              if (data?.hits) {
-                setItems(data.hits);
-              }
-              console.log(data);
-            }} />
+            <Button
+              name="検索"
+              clickHandler={async () => {
+                const { data } = await Search([keyword]);
+                if (data?.hits) {
+                  setItems(data.hits);
+                }
+                console.log(data);
+              }}
+            />
           </div>
         </div>
-        <div className={searchDiv}></div>
+        <h2 className={genreStyle}>ジャンル</h2>
+        <div className={genreButtonStyle}>
+          <div className={genreButtonInnerStyle}>
+            {braceletOrRibbon === "bracelet" ? (
+              <>
+                <GenreButton
+                  name="ブレスレッド"
+                  selected={true}
+                  clickHandler={choiceBracelet}
+                />
+                <div className={genreButtonSpaceStyle}></div>
+                <GenreButton
+                  name="リボン"
+                  selected={false}
+                  clickHandler={choiceRibbon}
+                />
+              </>
+            ) : (
+              <>
+                <GenreButton
+                  name="ブレスレッド"
+                  selected={false}
+                  clickHandler={choiceBracelet}
+                />
+                <div className={genreButtonSpaceStyle}></div>
+                <GenreButton
+                  name="リボン"
+                  selected={true}
+                  clickHandler={choiceRibbon}
+                />
+              </>
+            )}
+          </div>
+        </div>
+        <div className={searchDivStyle}></div>
         <div>
           {items.map((item, key) => {
-            return (
-              <div key={key}>
-                <Card item={item} />
-              </div>
-            );
+            if (item.genre === braceletOrRibbon) {
+              return (
+                <div key={key}>
+                  <Card item={item} />
+                </div>
+              );
+            } else {
+              return <div key={key}></div>;
+            }
           })}
         </div>
-      </div >
+      </div>
     </>
   );
 };

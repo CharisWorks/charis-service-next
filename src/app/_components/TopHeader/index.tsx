@@ -11,7 +11,7 @@ const TopHeader = () => {
   });
   const TopHeaderSpaceStyle = css({
     width: "100%",
-    height: "80px",
+    height: "60px",
   });
   const LinkBoxStyle = css({
     width: "100%",
@@ -19,6 +19,12 @@ const TopHeader = () => {
     color: "star",
     fontSize: "16px",
     marginLeft: "40px",
+  });
+  const creditStyle = css({
+    width: "100%",
+    color: "star",
+    fontSize: "16px",
+    textAlign: "right",
   });
   return (
     <>
@@ -38,6 +44,9 @@ const TopHeader = () => {
           <Link href="/faq">Q & A</Link>
           <br />
           <Link href="/terms">プライバシーポリシー</Link>
+        </div>
+        <div className={creditStyle}>
+          <a href="http://yukiosada.work/">designed by Myxogastria0808</a>
         </div>
       </div>
     </>

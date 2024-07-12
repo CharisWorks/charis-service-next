@@ -1,6 +1,6 @@
 import { css } from "../../../../styled-system/css";
 
-const Button = (props: { name: string, clickHandler: () => void }) => {
+const Button = (props: { name: string; clickHandler: () => void }) => {
   const buttonStyle = css({
     color: "star",
     width: "205px",
@@ -19,7 +19,7 @@ const Button = (props: { name: string, clickHandler: () => void }) => {
     border: "3px solid #BFA45E",
     marginLeft: "-5px",
     marginTop: "-42px",
-    bgColor: "night"
+    bgColor: "night",
   });
 
   return (
@@ -28,7 +28,6 @@ const Button = (props: { name: string, clickHandler: () => void }) => {
       <div className={bottomDivStyle}></div>
     </button>
   );
-}
+};
 
 export default Button;
-
