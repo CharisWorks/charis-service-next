@@ -1,14 +1,21 @@
 "use client";
 import { css } from "../../../../styled-system/css";
 import { MeiliItemImage } from "@/api/meili";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const ItemImages = (props: { imageArray: MeiliItemImage[] | undefined }) => {
-  if (typeof props.imageArray === "undefined") return;
+type ImageStyleType = {
+  background: string;
+  backgroundSize: string;
+  backgroundRepeat: string;
+  backgroundPosition: string;
+  width: string;
+  height: string;
+};
+
+const ItemImages = (props: { imageArray: MeiliItemImage[] }) => {
   const [imageUrl, setImageUrl] = useState<string>(
     props.imageArray[0].large_url
   );
-  const [imageDiv, setImageDiv] = useState<HTMLDivElement>();
 
   const itemImagesStyle = css({
     width: "100%",
@@ -34,10 +41,10 @@ const ItemImages = (props: { imageArray: MeiliItemImage[] | undefined }) => {
     <div className={itemImagesStyle}>
       <div
         style={{
-          background: `url(${imageUrl})`,
+          backgroundImage: `url(${imageUrl})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
+          backgroundPosition: "top",
           width: "393.433px",
           height: "226.724px",
         }}
@@ -52,7 +59,7 @@ const ItemImages = (props: { imageArray: MeiliItemImage[] | undefined }) => {
             >
               <div
                 style={{
-                  background: `url(${image.small_url})`,
+                  backgroundImage: `url(${image.large_url})`,
                   backgroundSize: "cover",
                   backgroundRepeat: "no-repeat",
                   backgroundPosition: "center",

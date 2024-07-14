@@ -66,7 +66,6 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
   });
   const priceWapperStyle = css({
     display: "flex",
-
   });
   const stockStyle = css({
     fontSize: "24px",
@@ -91,7 +90,11 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
     marginLeft: "auto",
     marginRight: "auto",
   });
-
+  const errorMessage = css({
+    color: "star",
+    fontSize: "20px",
+    textAlign: "center",
+  });
 
   return (
     <>
@@ -100,7 +103,11 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
         <div className={ItemStyle}>
           <div className={mainStyle}>
             <div className={mainImageStyle}>
-              <ItemImages imageArray={item?.images} />
+              {typeof item?.images !== "undefined" ? (
+                <ItemImages imageArray={item?.images} />
+              ) : (
+                <p className={errorMessage}>Loading...</p>
+              )}
             </div>
             <div className={mainContentStyle}>
               <h1 className={itemNameStyle}>{item?.item_name}</h1>
@@ -117,7 +124,7 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
                 </div>
               </div>
               <div className={buyButtonWapper}>
-                <Button name="購入" clickHandler={() => { }} />
+                <Button name="購入" clickHandler={() => {}} />
               </div>
             </div>
           </div>
