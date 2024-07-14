@@ -12,8 +12,14 @@ const ItemCard = (props: { item: MeiliItemHit }) => {
   };
 
   const cardStyle = css({
-    width: "265px",
+    width: "260px",
     bgColor: "night",
+    margin: "10px",
+    border: "3px solid #BFA45E",
+    padding: "10px",
+    zIndex: 10,
+    boxShadow: "8px 8px 0px 0px #002D52, 8px 8px 0px 3px #BFA45E",
+    cursor: "pointer",
   });
   const imageWrapperStyle = css({
     width: "150px",
@@ -48,71 +54,22 @@ const ItemCard = (props: { item: MeiliItemHit }) => {
     color: "star",
   });
 
-  const upperDivStyle = css({
-    width: "260px",
-    border: "3px solid #BFA45E",
-    bgColor: "night",
-    padding: "10px",
-  });
-  const bottomDivStyle = css({
-    width: "260px",
-    border: "3px solid #BFA45E",
-    bgColor: "night",
-    padding: "10px",
-    marginLeft: "5px",
-  });
-
-  const dummyWorkerStyle = css({
-    fontSize: "12px",
-    width: "100%",
-    textAlign: "end",
-    marginTop: "20px",
-    color: "rgba(0,0,0,0)",
-  });
-  const dummyCostStyle = css({
-    fontSize: "16px",
-    width: "100%",
-    textAlign: "start",
-    fontWeight: 700,
-    color: "rgba(0,0,0,0)",
-  });
-  const dummyItemNameStyle = css({
-    width: "100%",
-    textAlign: "center",
-    fontSize: "24px",
-    fontWeight: 700,
-    color: "rgba(0,0,0,0)",
-  });
-
   return (
     <button className={cardStyle} onClick={cardButtonWrapper}>
-      <div className={upperDivStyle}>
-        <div className={imageWrapperStyle}>
-          <Image
-            src={props.item.thumbnail_url}
-            width={0}
-            height={0}
-            sizes="100vw"
-            className={imageStyle}
-            alt={"Picture of the author"}
-          />
-        </div>
-        <p className={workerStyle}>{props.item.worker}</p>
-        <p className={costStyle}>￥{props.item.price}</p>
-        <h2 className={itemNameStyle}>{props.item.item_name}</h2>
+
+      <div className={imageWrapperStyle}>
+        <Image
+          src={props.item.thumbnail_url}
+          width={0}
+          height={0}
+          sizes="100vw"
+          className={imageStyle}
+          alt={"Picture of the author"}
+        />
       </div>
-      <div className={bottomDivStyle}>
-        <div className={imageWrapperStyle}></div>
-        <p className={dummyWorkerStyle}>
-          {props.item.worker}
-        </p>
-        <p className={dummyCostStyle}>
-          ￥{props.item.price}
-        </p>
-        <h2 className={dummyItemNameStyle}>
-          {props.item.item_name}
-        </h2>
-      </div>
+      <p className={workerStyle}>{props.item.worker}</p>
+      <p className={costStyle}>￥{props.item.price}</p>
+      <h2 className={itemNameStyle}>{props.item.item_name}</h2>
     </button>
   );
 };

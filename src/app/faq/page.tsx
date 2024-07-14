@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
-
+import Header from "../_components/Header";
 import { css } from "../../../styled-system/css";
+
 const faq: { question: string; answer: string }[] = [
   {
     question: "Q. マイページはありますか？",
@@ -15,6 +16,7 @@ const faq: { question: string; answer: string }[] = [
       "A. 送料は全国一律300円です。送料無料オプションは今後導入するかもしれません。",
   },
 ];
+
 const Faq = () => {
   const containerStyle = css({
     bgColor: "night",
@@ -50,6 +52,7 @@ const Faq = () => {
 
   return (
     <>
+      <Header />
       <div className={containerStyle}>
         <h1 className={titleStyle}>Q & A</h1>
         <div>

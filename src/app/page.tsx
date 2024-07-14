@@ -86,82 +86,78 @@ const Home = () => {
   });
 
   return (
-    <>
-      <div className={containerStyle}>
-        <TopHeader />
-        <h1 className={titleStyle}>美しいものを探す旅にでかけませんか？</h1>
-        <input
-          type="text"
-          onChange={(e) => {
-            setKeyword(e.target.value);
-          }}
-          className={searchStyle}
-          placeholder="SEARCH"
-        />
-        <div className={buttonWrapperStyle}>
-          <div className={innerButtonWrapperStyle}>
-            <Button
-              name="検索"
-              clickHandler={async () => {
-                const { data } = await Search([keyword]);
-                if (data?.hits) {
-                  setItems(data.hits);
-                }
-                console.log(data);
-              }}
-            />
-          </div>
-        </div>
-        <h2 className={genreStyle}>ジャンル</h2>
-        <div className={genreButtonStyle}>
-          <div className={genreButtonInnerStyle}>
-            {braceletOrRibbon === "bracelet" ? (
-              <>
-                <GenreButton
-                  name="ブレスレッド"
-                  selected={true}
-                  clickHandler={choiceBracelet}
-                />
-                <div className={genreButtonSpaceStyle}></div>
-                <GenreButton
-                  name="リボン"
-                  selected={false}
-                  clickHandler={choiceRibbon}
-                />
-              </>
-            ) : (
-              <>
-                <GenreButton
-                  name="ブレスレッド"
-                  selected={false}
-                  clickHandler={choiceBracelet}
-                />
-                <div className={genreButtonSpaceStyle}></div>
-                <GenreButton
-                  name="リボン"
-                  selected={true}
-                  clickHandler={choiceRibbon}
-                />
-              </>
-            )}
-          </div>
-        </div>
-        <div className={searchDivStyle}></div>
-        <div>
-          {items.map((item, index) => {
-            if (item.genre === braceletOrRibbon) {
-              return (
-                <div key={index}>
-                  <Card item={item} />
-                </div>
-              );
-            } else {
-              return <React.Fragment key={index}></React.Fragment>;
-            }
-          })}
+    <div className={containerStyle}>
+      <TopHeader />
+      <h1 className={titleStyle}>美しいものを探す旅にでかけませんか？</h1>
+      <input
+        type="text"
+        onChange={(e) => {
+          setKeyword(e.target.value);
+        }}
+        className={searchStyle}
+        placeholder="SEARCH"
+      />
+      <div className={buttonWrapperStyle}>
+        <div className={innerButtonWrapperStyle}>
+          <Button
+            name="検索"
+            clickHandler={async () => {
+              const { data } = await Search([keyword]);
+              if (data?.hits) {
+                setItems(data.hits);
+              }
+              console.log(data);
+            }}
+          />
         </div>
       </div>
-    </>
+      <h2 className={genreStyle}>ジャンル</h2>
+      <div className={genreButtonStyle}>
+        <div className={genreButtonInnerStyle}>
+          {braceletOrRibbon === "bracelet" ? (
+            <>
+              <GenreButton
+                name="ブレスレッド"
+                selected={true}
+                clickHandler={choiceBracelet}
+              />
+              <div className={genreButtonSpaceStyle}></div>
+              <GenreButton
+                name="リボン"
+                selected={false}
+                clickHandler={choiceRibbon}
+              />
+            </>
+          ) : (
+            <>
+              <GenreButton
+                name="ブレスレッド"
+                selected={false}
+                clickHandler={choiceBracelet}
+              />
+              <div className={genreButtonSpaceStyle}></div>
+              <GenreButton
+                name="リボン"
+                selected={true}
+                clickHandler={choiceRibbon}
+              />
+            </>
+          )}
+        </div>
+      </div>
+      <div className={searchDivStyle}></div>
+      <div>
+        {items.map((item, index) => {
+          if (item.genre === braceletOrRibbon) {
+            return (
+              <Card key={index} item={item} />
+            );
+          } else {
+            return <React.Fragment key={index}></React.Fragment>;
+          }
+        })}
+      </div>
+    </div>
   );
 };
 

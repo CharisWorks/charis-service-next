@@ -60,7 +60,7 @@ export type MeiliItemHit = {
     tags: string[]
 }
 
-type MeiliItemImage = {
+export type MeiliItemImage = {
     large_url: string
     medium_url: string
     small_url: string

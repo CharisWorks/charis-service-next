@@ -2,6 +2,8 @@
 import React from "react";
 import { css } from "../../../styled-system/css";
 import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import Header from "../_components/Header";
 
 const term = `
 # 個人情報保護方針（プライバシーポリシー）
@@ -104,9 +106,12 @@ const Terms = () => {
 
   return (
     <>
+      <Header />
       <div className={containerStyle}>
         <h1 className={titleStyle}>プライバシーポリシー</h1>
-        <Markdown className={termStyle}>{term}</Markdown>
+        <Markdown className={termStyle} remarkPlugins={[remarkGfm]}>
+          {term}
+        </Markdown>
       </div>
     </>
   );

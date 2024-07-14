@@ -26,18 +26,25 @@ const TopHeader = () => {
     fontSize: "16px",
     textAlign: "right",
   });
+  const ImageWrapper = css({
+    width: "280px",
+    height: "69px",
+  });
+
   return (
     <>
       <div className={TopHeaderSpaceStyle}></div>
       <div className={TopHeaderStyle}>
-        <Image
-          src={"/logo.webp"}
-          width={0}
-          height={0}
-          sizes="100vw"
-          style={{ width: "auto", height: "100%" }}
-          alt={"logo image"}
-        />
+        <Link href="/" className={ImageWrapper}>
+          <Image
+            src={"/logo.webp"}
+            width={0}
+            height={0}
+            sizes="100vw"
+            style={{ width: "auto", height: "100%" }}
+            alt={"logo image"}
+          />
+        </Link>
         <div className={LinkBoxStyle}>
           <Link href="/about">charis WORKsについて</Link>
           <br />

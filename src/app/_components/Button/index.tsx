@@ -23,7 +23,7 @@ const Button = (props: { name: string; clickHandler: () => void }) => {
   });
 
   return (
-    <button className={buttonStyle} onClick={props.clickHandler}>
+    <button type="submit" className={buttonStyle} onClick={props.clickHandler}>
       <div className={topDivStyle}>{props.name}</div>
       <div className={bottomDivStyle}></div>
     </button>
