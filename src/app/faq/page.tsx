@@ -55,16 +55,14 @@ const Faq = () => {
       <Header />
       <div className={containerStyle}>
         <h1 className={titleStyle}>Q & A</h1>
-        <div>
-          {faq.map((item, index) => {
-            return (
-              <div key={index} className={contentStyle}>
-                <h2 className={questionStyle}>{item.question}</h2>
-                <p className={answerStyle}>{item.answer}</p>
-              </div>
-            );
-          })}
-        </div>
+        {faq.map((item, index) => {
+          return (
+            <div key={index} className={contentStyle}>
+              <h2 className={questionStyle}>{item.question}</h2>
+              <p className={answerStyle}>{item.answer}</p>
+            </div>
+          );
+        })}
       </div>
     </>
   );

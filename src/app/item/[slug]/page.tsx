@@ -7,6 +7,7 @@ import { GetItem } from "@/api/gobackend";
 import { css } from "../../../../styled-system/css";
 import Header from "../../_components/Header";
 import Button from "@/app/_components/Button";
+import SoldOutButton from "../../_components/SoldOutButton";
 
 const ItemImages = dynamic(() => import("../../_components/ItemImages"), {
   ssr: false,
@@ -25,7 +26,7 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
   }, [params.slug]);
   //実験
   const quantityRef = useRef<HTMLSelectElement>(null);
-  const [quantity, setQuantity] = useState<number>(0);
+  const [quantity, setQuantity] = useState<number>(1);
   const selectQuantity = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setQuantity(Number(e.target.value));
   };
@@ -33,6 +34,12 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
     { length: item?.stock ?? 0 },
     (_, i) => i + 1
   );
+  const [purchaseValidation, setPurchaseValidation] = useState<boolean>(false);
+  useEffect(() => {
+    if (quantityArray.length !== 0) {
+      setPurchaseValidation(true);
+    }
+  }, [quantityArray]);
 
   const errorMessage = css({
     color: "star",
@@ -185,12 +192,16 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
                 </div>
                 <div className={purchaseButtonWrapperStyle}>
                   <div className={purchaseButtonInnerStyle}>
-                    <Button
-                      name="購入"
-                      clickHandler={() => {
-                        console.log(quantity);
-                      }}
-                    />
+                    {purchaseValidation ? (
+                      <Button
+                        name="購入"
+                        clickHandler={() => {
+                          console.log(quantity);
+                        }}
+                      />
+                    ) : (
+                      <SoldOutButton name="SOLD OUT" />
+                    )}
                   </div>
                 </div>
               </div>

@@ -7,6 +7,7 @@ import { css } from "../../../../styled-system/css";
 const ItemCard = (props: { item: MeiliItemHit }) => {
   const cardStyle = css({
     width: "260px",
+    height: "100%",
     bgColor: "night",
     margin: "10px",
     border: "3px solid #BFA45E",

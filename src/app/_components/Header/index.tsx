@@ -8,13 +8,13 @@ const Header = () => {
     width: "100%",
     height: "85px",
     bgColor: "night",
-    boxShadow: "0px 0px 15px #ffffff",
-    marginBottom: "15px",
+    boxShadow: "0px 0px 25px #0088ff",
+    marginBottom: "25px",
     zIndex: "1",
   });
   const HeaderStyle = css({
     width: "100%",
-    maxWidth: "1024px",
+    maxWidth: "1210px",
     height: "85px",
     display: "flex",
     paddingTop: "8px",
@@ -37,7 +37,7 @@ const Header = () => {
     paddingTop: "48px",
   });
   const ImageWrapper = css({
-    width: "280px",
+    width: "251px",
     height: "69px",
   });
   return (
@@ -46,7 +46,7 @@ const Header = () => {
         <Link href="/" className={ImageWrapper} scroll={false}>
           <Image
             src={"/logo.webp"}
-            width={280}
+            width={165}
             height={69}
             alt={"Logo of charis WORKs"}
           />

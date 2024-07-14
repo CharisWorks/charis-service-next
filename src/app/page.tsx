@@ -35,9 +35,10 @@ const Home = () => {
   const containerStyle = css({
     bgColor: "night",
     width: "100%",
-    maxWidth: "1024px",
+    maxWidth: "1210px",
     marginLeft: "auto",
     marginRight: "auto",
+    paddingBottom: "100px",
     minHeight: "100lvh",
   });
   const titleStyle = css({
@@ -78,6 +79,7 @@ const Home = () => {
   });
   const genreButtonStyle = css({
     width: "100%",
+    paddingBottom: "50px",
   });
   const genreButtonInnerStyle = css({
     display: "flex",
@@ -89,11 +91,18 @@ const Home = () => {
     width: "30px",
     height: "43px",
   });
-  const searchDivStyle = css({
+  const CardWrapperStyle = css({
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "flex-start",
+    gap: "30px",
+    alignItems: "stretch",
+    alignContent: "stretch",
     width: "100%",
-    height: "50px",
+    maxWidth: "1210px",
+    marginLeft: "auto",
+    marginRight: "auto",
   });
-
   return (
     <div className={containerStyle}>
       <TopHeader />
@@ -150,8 +159,7 @@ const Home = () => {
           )}
         </div>
       </div>
-      <div className={searchDivStyle}></div>
-      <div>
+      <div className={CardWrapperStyle}>
         {items.map((item, index) => {
           if (item.genre === braceletOrRibbon) {
             return <Card key={index} item={item} />;
