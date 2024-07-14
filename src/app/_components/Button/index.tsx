@@ -8,6 +8,7 @@ const Button = (props: { name: string; clickHandler: () => void }) => {
     cursor: "pointer",
   });
   const topDivStyle = css({
+    fontSize: "16px",
     width: "200px",
     height: "37px",
     border: "3px solid #BFA45E",

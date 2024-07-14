@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Description from "../../_components/Description";
 import { MeiliItemHit } from "@/api/meili";
@@ -14,22 +14,39 @@ const ItemImages = dynamic(() => import("../../_components/ItemImages"), {
 
 export default function ItemPage({ params }: { params: { slug: string } }) {
   const [item, setItems] = useState<MeiliItemHit>();
+  const fetchItems = async () => {
+    const { data } = await GetItem(params.slug);
+    setItems(data);
+  };
   useEffect(() => {
-    const fetchItems = async () => {
-      const { data } = await GetItem(params.slug);
-      setItems(data);
-    };
-    fetchItems();
+    (async () => {
+      await fetchItems();
+    })();
   }, [params.slug]);
+  //実験
+  const quantityRef = useRef<HTMLSelectElement>(null);
+  const [quantity, setQuantity] = useState<number>(0);
+  const selectQuantity = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setQuantity(Number(e.target.value));
+  };
+  const quantityArray: number[] = Array.from(
+    { length: item?.stock ?? 0 },
+    (_, i) => i + 1
+  );
 
+  const errorMessage = css({
+    color: "star",
+    fontSize: "20px",
+    textAlign: "center",
+  });
   const containerStyle = css({
     bgColor: "night",
     width: "100%",
-    maxWidth: "1044px",
+    maxWidth: "1055px",
     minHeight: "100lvh",
     paddingTop: "185px",
     paddingBottom: "100px",
-    paddingRight: "10px",
+    paddingRight: "21px",
     paddingLeft: "10px",
     marginLeft: "auto",
     marginRight: "auto",
@@ -58,13 +75,13 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
   const workerStyle = css({
     fontSize: "16px",
   });
-  const tagWapperStyle = css({
-    marginTop: "60px",
+  const tagWrapperStyle = css({
+    marginTop: "52px",
   });
   const tagStyle = css({
     fontSize: "18px",
   });
-  const priceWapperStyle = css({
+  const priceWrapperStyle = css({
     display: "flex",
   });
   const stockStyle = css({
@@ -80,20 +97,45 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
     marginBottom: "auto",
     paddingLeft: "10px",
   });
-  const stockAndPriceWapperStyle = css({
+  const stockAndPriceWrapperStyle = css({
     display: "flex",
     justifyContent: "space-between",
     paddingBottom: "12px",
   });
-  const buyButtonWapper = css({
+  const purchaseAndSelectWrapperStyle = css({
+    width: "100%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    display: "flex",
+  });
+  const selectStyle = css({
+    color: "star",
+    width: "205px",
+    height: "42.5px",
+    fontSize: "16px",
+    cursor: "pointer",
+    border: "3px solid #BFA45E",
+    textAlign: "center",
+  });
+  const selectWrapperStyle = css({
+    flexGrow: "1",
+  });
+  const purchaseButtonWrapperStyle = css({
+    flexGrow: "1",
+    marginTop: "30px",
+  });
+  const purchaseButtonInnerStyle = css({
     width: "fit-content",
     marginLeft: "auto",
     marginRight: "auto",
   });
-  const errorMessage = css({
-    color: "star",
+  const selectInnerStyle = css({
+    width: "fit-content",
+    marginLeft: "auto",
+    marginRight: "auto",
+  });
+  const quantityStyle = css({
     fontSize: "20px",
-    textAlign: "center",
   });
 
   return (
@@ -112,19 +154,45 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
             <div className={mainContentStyle}>
               <h1 className={itemNameStyle}>{item?.item_name}</h1>
               <p className={workerStyle}>出品者: {item?.worker}</p>
-              <div className={tagWapperStyle}>
+              <div className={tagWrapperStyle}>
                 <p className={tagStyle}>色: {item?.tags[0]}</p>
                 <p className={tagStyle}>長さ: {item?.tags[1]}</p>
               </div>
-              <div className={stockAndPriceWapperStyle}>
+              <div className={stockAndPriceWrapperStyle}>
                 <h3 className={stockStyle}>在庫: {item?.stock}個 (n → ∞)</h3>
-                <div className={priceWapperStyle}>
+                <div className={priceWrapperStyle}>
                   <h2 className={priceStyle}>¥ {item?.price}</h2>
                   <p className={taxStyle}>税込</p>
                 </div>
               </div>
-              <div className={buyButtonWapper}>
-                <Button name="購入" clickHandler={() => {}} />
+              <div className={purchaseAndSelectWrapperStyle}>
+                <div className={selectWrapperStyle}>
+                  <div className={selectInnerStyle}>
+                    <p className={quantityStyle}>数量</p>
+                    <select
+                      ref={quantityRef}
+                      value={quantity}
+                      onChange={selectQuantity}
+                      className={selectStyle}
+                    >
+                      {quantityArray.map((quantity, index) => (
+                        <option value={quantity} key={index}>
+                          {quantity}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div className={purchaseButtonWrapperStyle}>
+                  <div className={purchaseButtonInnerStyle}>
+                    <Button
+                      name="購入"
+                      clickHandler={() => {
+                        console.log(quantity);
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

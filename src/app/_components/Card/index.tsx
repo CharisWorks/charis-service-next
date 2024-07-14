@@ -1,16 +1,10 @@
 import * as React from "react";
 import { MeiliItemHit } from "@/api/meili";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { css } from "../../../../styled-system/css";
 
 const ItemCard = (props: { item: MeiliItemHit }) => {
-  const router = useRouter();
-
-  const cardButtonWrapper = () => {
-    router.push(`item/${props.item.id}`);
-  };
-
   const cardStyle = css({
     width: "260px",
     bgColor: "night",
@@ -55,22 +49,23 @@ const ItemCard = (props: { item: MeiliItemHit }) => {
   });
 
   return (
-    <button className={cardStyle} onClick={cardButtonWrapper}>
-
-      <div className={imageWrapperStyle}>
-        <Image
-          src={props.item.thumbnail_url}
-          width={0}
-          height={0}
-          sizes="100vw"
-          className={imageStyle}
-          alt={"Picture of the author"}
-        />
+    <Link href={`/item/${props.item.id}`} scroll={false}>
+      <div className={cardStyle}>
+        <div className={imageWrapperStyle}>
+          <Image
+            src={props.item.thumbnail_url}
+            width={0}
+            height={0}
+            sizes="100vw"
+            className={imageStyle}
+            alt={"Picture of the author"}
+          />
+        </div>
+        <p className={workerStyle}>{props.item.worker}</p>
+        <p className={costStyle}>￥{props.item.price}</p>
+        <h2 className={itemNameStyle}>{props.item.item_name}</h2>
       </div>
-      <p className={workerStyle}>{props.item.worker}</p>
-      <p className={costStyle}>￥{props.item.price}</p>
-      <h2 className={itemNameStyle}>{props.item.item_name}</h2>
-    </button>
+    </Link>
   );
 };
 

@@ -43,7 +43,7 @@ const Header = () => {
   return (
     <div className={HeaderWrapperStyle}>
       <div className={HeaderStyle}>
-        <Link href="/" className={ImageWrapper}>
+        <Link href="/" className={ImageWrapper} scroll={false}>
           <Image
             src={"/logo.webp"}
             width={280}
@@ -52,11 +52,17 @@ const Header = () => {
           />
         </Link>
         <div className={LinkBoxStyle}>
-          <Link href="/about">charis WORKsについて</Link>
+          <Link href="/about" scroll={false}>
+            charis WORKsについて
+          </Link>
           <br />
-          <Link href="/faq">Q & A</Link>
+          <Link href="/faq" scroll={false}>
+            Q & A
+          </Link>
           <br />
-          <Link href="/terms">プライバシーポリシー</Link>
+          <Link href="/terms" scroll={false}>
+            プライバシーポリシー
+          </Link>
         </div>
         <div className={creditStyle}>
           <a href="http://yukiosada.work/">designed by Myxogastria0808</a>

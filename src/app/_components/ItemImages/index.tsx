@@ -33,42 +33,58 @@ const ItemImages = (props: { imageArray: MeiliItemImage[] }) => {
   const itemImageButtonWrapper = (index: number) => {
     if (typeof props.imageArray === "undefined") return;
     const imageUrl = props.imageArray[index];
-    console.log(props.imageArray);
     setImageUrl(imageUrl.large_url);
   };
 
   return (
     <div className={itemImagesStyle}>
-      <div
-        style={{
-          backgroundImage: `url(${imageUrl})`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "top",
-          width: "393.433px",
-          height: "226.724px",
-        }}
-      ></div>
+      {props.imageArray.length === 1 ? (
+        <div
+          style={{
+            backgroundImage: `url(${imageUrl})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "top",
+            width: "393.433px",
+            height: "347px",
+          }}
+        ></div>
+      ) : (
+        <div
+          style={{
+            backgroundImage: `url(${imageUrl})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "top",
+            width: "393.433px",
+            height: "243px",
+          }}
+        ></div>
+      )}
       <div className={buttonWrapperStyle}>
-        {props.imageArray.map((image, index) => {
-          return (
-            <button
-              key={index}
-              className={buttonStyle}
-              onClick={() => itemImageButtonWrapper(index)}
-            >
-              <div
-                style={{
-                  backgroundImage: `url(${image.large_url})`,
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                  backgroundPosition: "center",
-                  height: "100px",
-                }}
-              ></div>
-            </button>
-          );
-        })}
+        {props.imageArray.length === 1 ? (
+          <></>
+        ) : (
+          props.imageArray.map((image, index) => {
+            return (
+              <button
+                key={index}
+                className={buttonStyle}
+                onClick={() => itemImageButtonWrapper(index)}
+              >
+                <div
+                  style={{
+                    backgroundImage: `url(${image.large_url})`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                    height: "100px",
+                  }}
+                ></div>
+              </button>
+            );
+          })
+        )}
       </div>
     </div>
   );

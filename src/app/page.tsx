@@ -1,6 +1,5 @@
 "use client";
-import React, { useState } from "react";
-//import { Checkout } from "@/api/gobackend";
+import React, { useEffect, useState } from "react";
 import { MeiliItemHit, Search } from "@/api/meili";
 import Card from "./_components/Card";
 import Button from "./_components/Button";
@@ -9,13 +8,23 @@ import GenreButton from "./_components/GenreButton";
 import { css } from "../../styled-system/css";
 
 const Home = () => {
-  const [keyword, setKeyword] = useState("");
-  //const [itemId, setItemId] = useState(0);
-  //const [quantity, setQuantity] = useState(0);
+  const [keyword, setKeyword] = useState<string>("");
   const [items, setItems] = useState<MeiliItemHit[]>([]);
-  const [braceletOrRibbon, setBraceletOrRibbon] = useState("bracelet");
+  const [braceletOrRibbon, setBraceletOrRibbon] = useState<string>("bracelet");
 
-  //genre
+  const fetchData = async (keyword: string) => {
+    const { data } = await Search([keyword]);
+    if (data?.hits) {
+      setItems(data.hits);
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      await fetchData("");
+    })();
+  }, []);
+
   const choiceBracelet = () => {
     setBraceletOrRibbon("bracelet");
   };
@@ -102,11 +111,7 @@ const Home = () => {
           <Button
             name="検索"
             clickHandler={async () => {
-              const { data } = await Search([keyword]);
-              if (data?.hits) {
-                setItems(data.hits);
-              }
-              console.log(data);
+              await fetchData(keyword);
             }}
           />
         </div>
@@ -149,9 +154,7 @@ const Home = () => {
       <div>
         {items.map((item, index) => {
           if (item.genre === braceletOrRibbon) {
-            return (
-              <Card key={index} item={item} />
-            );
+            return <Card key={index} item={item} />;
           } else {
             return <React.Fragment key={index}></React.Fragment>;
           }
