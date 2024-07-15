@@ -64,6 +64,8 @@ export const Description = (props: { overview: string }) => {
       marginBottom: "20px",
     },
     "& table": {
+      marginTop: "20px",
+      marginBottom: "20px",
       borderCollapse: "collapse",
       "& th": {
         border: "1px solid #BFA45E",
