@@ -1,4 +1,15 @@
 import { css } from "../../../../styled-system/css";
+import { defineConfig } from "@pandacss/dev";
+
+defineConfig({
+  theme: {
+    extend: {
+      breakpoints: {
+        sm: "500px",
+      },
+    },
+  },
+});
 
 const GenreButton = (props: {
   name: string;
