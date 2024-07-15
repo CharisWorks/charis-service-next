@@ -5,6 +5,7 @@ import Card from "./_components/Card";
 import Button from "./_components/Button";
 import TopHeader from "./_components/TopHeader";
 import GenreButton from "./_components/GenreButton";
+import Loading from "./_components/Loading";
 import { css } from "../../styled-system/css";
 
 const Home = () => {
@@ -110,6 +111,7 @@ const Home = () => {
     marginRight: "auto",
   });
   const LoadingBodyStyle = css({
+    position: "fixed",
     width: "100%",
     height: "100lvh",
     bgColor: "night",
@@ -144,24 +146,10 @@ const Home = () => {
   return (
     <>
       {isLoading ? (
-        <div className={LoadingBodyStyle}>
-          <div className={LoadingBoxStyle}>
-            <div className={charisLogoSquare1}></div>
-            <div className={charisLogoSquare2}></div>
-          </div>
-        </div>
+        <Loading isLoading={true} />
       ) : (
         <>
-          {fadeOut ? (
-            <></>
-          ) : (
-            <div className={FadeOutLoadingBodyStyle}>
-              <div className={LoadingBoxStyle}>
-                <div className={charisLogoSquare1}></div>
-                <div className={charisLogoSquare2}></div>
-              </div>
-            </div>
-          )}
+          {fadeOut ? <></> : <Loading isLoading={false} />}
           <div className={containerStyle}>
             <TopHeader />
             <h1 className={titleStyle}>美しいものを探す旅にでかけませんか？</h1>
