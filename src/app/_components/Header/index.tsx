@@ -37,16 +37,16 @@ const Header = () => {
     paddingTop: "48px",
   });
   const ImageWrapper = css({
-    width: "251px",
-    height: "69px",
+    width: "290px",
+    height: "75px",
   });
   return (
     <div className={HeaderWrapperStyle}>
       <div className={HeaderStyle}>
         <Link href="/" className={ImageWrapper} scroll={false}>
           <Image
-            src={"/logo.webp"}
-            width={165}
+            src={"/logo.svg"}
+            width={176}
             height={69}
             alt={"Logo of charis WORKs"}
           />
