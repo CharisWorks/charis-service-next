@@ -20,10 +20,7 @@ export default defineConfig({
           star: { value: "#BFA45E" },
         },
       },
-      breakpoints: {
-        sm: "500px",
-        lg: "1210px",
-      },
+
       keyframes: {
         spin: {
           "0%": { transform: "rotate(45deg)" },

@@ -7,7 +7,19 @@ import TopHeader from "./_components/TopHeader";
 import GenreButton from "./_components/GenreButton";
 import Loading from "./_components/Loading";
 import { css } from "../../styled-system/css";
-
+import { defineConfig } from "@pandacss/dev";
+defineConfig({
+  theme: {
+    extend: {
+      breakpoints: {
+        sm: "980px",
+        md: "1140px",
+        lg: "1320px",
+        xl: "1480px",
+      },
+    },
+  },
+});
 const Home = () => {
   const [keyword, setKeyword] = useState<string>("");
   const [items, setItems] = useState<MeiliItemHit[]>([]);
@@ -41,7 +53,6 @@ const Home = () => {
 
   const containerStyle = css({
     bgColor: "night",
-    width: "100%",
     maxWidth: "1210px",
     marginLeft: "auto",
     marginRight: "auto",
@@ -105,10 +116,14 @@ const Home = () => {
     gap: "30px",
     alignItems: "stretch",
     alignContent: "stretch",
-    width: "100%",
+    width: ["300px", "600px", "600px", "900px", "1600px"],
     maxWidth: "1210px",
-    marginLeft: "auto",
-    marginRight: "auto",
+  });
+  const CardContainerStyle = css({
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
   });
   const LoadingBodyStyle = css({
     position: "fixed",
@@ -205,20 +220,22 @@ const Home = () => {
                 )}
               </div>
             </div>
-            <div className={CardWrapperStyle}>
-              {items.map((item, index) => {
-                if (item.genre === braceletOrRibbon) {
-                  return (
-                    <>
-                      <Card key={index} item={item} />
-                      <Card key={index} item={item} />
-                      <Card key={index} item={item} />
-                    </>
-                  );
-                } else {
-                  return <React.Fragment key={index}></React.Fragment>;
-                }
-              })}
+            <div className={CardContainerStyle}>
+              <div className={CardWrapperStyle}>
+                {items.map((item, index) => {
+                  if (item.genre === braceletOrRibbon) {
+                    return (
+                      <>
+                        <Card key={index} item={item} />
+                        <Card key={index} item={item} />
+                        <Card key={index} item={item} />
+                      </>
+                    );
+                  } else {
+                    return <React.Fragment key={index}></React.Fragment>;
+                  }
+                })}
+              </div>
             </div>
           </div>
         </>
