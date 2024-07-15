@@ -64,16 +64,7 @@ const ItemCard = (props: { item: MeiliItemHit }) => {
             backgroundRepeat: "no-repeat",
             borderRadius: "50%",
           }}
-        >
-          {/* <Image
-            src={props.item.thumbnail_url}
-            width={0}
-            height={0}
-            sizes="100vw"
-            className={imageStyle}
-            alt={"Picture of the author"}
-          /> */}
-        </div>
+        ></div>
         <p className={workerStyle}>{props.item.worker}</p>
         <p className={costStyle}>￥{props.item.price}</p>
         <h2 className={itemNameStyle}>{props.item.item_name}</h2>

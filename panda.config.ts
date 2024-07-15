@@ -24,6 +24,16 @@ export default defineConfig({
         sm: "500px",
         lg: "1210px",
       },
+      keyframes: {
+        spin: {
+          "0%": { transform: "rotate(45deg)" },
+          "100%": { transform: "rotate(135deg)" },
+        },
+        fadeOut: {
+          "0%": { zIndex: "10", opacity: "1" },
+          "100%": { zIndex: "-1", opacity: "0" },
+        },
+      },
     },
   },
 

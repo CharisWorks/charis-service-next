@@ -11,6 +11,8 @@ const Home = () => {
   const [keyword, setKeyword] = useState<string>("");
   const [items, setItems] = useState<MeiliItemHit[]>([]);
   const [braceletOrRibbon, setBraceletOrRibbon] = useState<string>("bracelet");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [fadeOut, setFadeOut] = useState<boolean>(false);
 
   const fetchData = async (keyword: string) => {
     const { data } = await Search([keyword]);
@@ -18,19 +20,23 @@ const Home = () => {
       setItems(data.hits);
     }
   };
-
   useEffect(() => {
     (async () => {
       await fetchData("");
     })();
   }, []);
-
   const choiceBracelet = () => {
     setBraceletOrRibbon("bracelet");
   };
   const choiceRibbon = () => {
     setBraceletOrRibbon("ribbon");
   };
+  useEffect(() => {
+    setIsLoading(false);
+    setTimeout(() => {
+      setFadeOut(true);
+    }, 1800);
+  }, [items]);
 
   const containerStyle = css({
     bgColor: "night",
@@ -103,78 +109,133 @@ const Home = () => {
     marginLeft: "auto",
     marginRight: "auto",
   });
+  const LoadingBodyStyle = css({
+    width: "100%",
+    height: "100lvh",
+    bgColor: "night",
+  });
+  const LoadingBoxStyle = css({
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+  });
+  const charisLogoSquare1 = css({
+    width: "100px",
+    height: "100px",
+    border: "6px solid #BFA45E",
+  });
+  const charisLogoSquare2 = css({
+    width: "100px",
+    height: "100px",
+    border: "6px solid #BFA45E",
+    marginTop: "-100px",
+    transform: "rotate(45deg)",
+    animation: "spin 2s infinite",
+  });
+  const FadeOutLoadingBodyStyle = css({
+    position: "fixed",
+    width: "100%",
+    height: "100lvh",
+    bgColor: "night",
+    animation: "fadeOut 2s",
+  });
+
   return (
-    <div className={containerStyle}>
-      <TopHeader />
-      <h1 className={titleStyle}>美しいものを探す旅にでかけませんか？</h1>
-      <input
-        type="text"
-        onChange={(e) => {
-          setKeyword(e.target.value);
-        }}
-        className={searchStyle}
-        placeholder="SEARCH"
-      />
-      <div className={buttonWrapperStyle}>
-        <div className={innerButtonWrapperStyle}>
-          <Button
-            name="検索"
-            clickHandler={async () => {
-              await fetchData(keyword);
-            }}
-          />
+    <>
+      {isLoading ? (
+        <div className={LoadingBodyStyle}>
+          <div className={LoadingBoxStyle}>
+            <div className={charisLogoSquare1}></div>
+            <div className={charisLogoSquare2}></div>
+          </div>
         </div>
-      </div>
-      <h2 className={genreStyle}>ジャンル</h2>
-      <div className={genreButtonStyle}>
-        <div className={genreButtonInnerStyle}>
-          {braceletOrRibbon === "bracelet" ? (
-            <>
-              <GenreButton
-                name="ブレスレッド"
-                selected={true}
-                clickHandler={choiceBracelet}
-              />
-              <div className={genreButtonSpaceStyle}></div>
-              <GenreButton
-                name="リボン"
-                selected={false}
-                clickHandler={choiceRibbon}
-              />
-            </>
+      ) : (
+        <>
+          {fadeOut ? (
+            <></>
           ) : (
-            <>
-              <GenreButton
-                name="ブレスレッド"
-                selected={false}
-                clickHandler={choiceBracelet}
-              />
-              <div className={genreButtonSpaceStyle}></div>
-              <GenreButton
-                name="リボン"
-                selected={true}
-                clickHandler={choiceRibbon}
-              />
-            </>
+            <div className={FadeOutLoadingBodyStyle}>
+              <div className={LoadingBoxStyle}>
+                <div className={charisLogoSquare1}></div>
+                <div className={charisLogoSquare2}></div>
+              </div>
+            </div>
           )}
-        </div>
-      </div>
-      <div className={CardWrapperStyle}>
-        {items.map((item, index) => {
-          if (item.genre === braceletOrRibbon) {
-            return (
-              <>
-                <Card key={index} item={item} />
-                <Card key={index} item={item} />
-                <Card key={index} item={item} />
-              </>
-            );
-          } else {
-            return <React.Fragment key={index}></React.Fragment>;
-          }
-        })}
-      </div>
-    </div>
+          <div className={containerStyle}>
+            <TopHeader />
+            <h1 className={titleStyle}>美しいものを探す旅にでかけませんか？</h1>
+            <input
+              type="text"
+              onChange={(e) => {
+                setKeyword(e.target.value);
+              }}
+              className={searchStyle}
+              placeholder="SEARCH"
+            />
+            <div className={buttonWrapperStyle}>
+              <div className={innerButtonWrapperStyle}>
+                <Button
+                  name="検索"
+                  clickHandler={async () => {
+                    await fetchData(keyword);
+                  }}
+                />
+              </div>
+            </div>
+            <h2 className={genreStyle}>ジャンル</h2>
+            <div className={genreButtonStyle}>
+              <div className={genreButtonInnerStyle}>
+                {braceletOrRibbon === "bracelet" ? (
+                  <>
+                    <GenreButton
+                      name="ブレスレッド"
+                      selected={true}
+                      clickHandler={choiceBracelet}
+                    />
+                    <div className={genreButtonSpaceStyle}></div>
+                    <GenreButton
+                      name="リボン"
+                      selected={false}
+                      clickHandler={choiceRibbon}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <GenreButton
+                      name="ブレスレッド"
+                      selected={false}
+                      clickHandler={choiceBracelet}
+                    />
+                    <div className={genreButtonSpaceStyle}></div>
+                    <GenreButton
+                      name="リボン"
+                      selected={true}
+                      clickHandler={choiceRibbon}
+                    />
+                  </>
+                )}
+              </div>
+            </div>
+            <div className={CardWrapperStyle}>
+              {items.map((item, index) => {
+                if (item.genre === braceletOrRibbon) {
+                  return (
+                    <>
+                      <Card key={index} item={item} />
+                      <Card key={index} item={item} />
+                      <Card key={index} item={item} />
+                    </>
+                  );
+                } else {
+                  return <React.Fragment key={index}></React.Fragment>;
+                }
+              })}
+            </div>
+          </div>
+        </>
+      )}
+    </>
   );
 };
 
