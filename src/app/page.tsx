@@ -162,7 +162,13 @@ const Home = () => {
       <div className={CardWrapperStyle}>
         {items.map((item, index) => {
           if (item.genre === braceletOrRibbon) {
-            return <Card key={index} item={item} />;
+            return (
+              <>
+                <Card key={index} item={item} />
+                <Card key={index} item={item} />
+                <Card key={index} item={item} />
+              </>
+            );
           } else {
             return <React.Fragment key={index}></React.Fragment>;
           }

@@ -42,9 +42,9 @@ const ItemImages = (props: { imageArray: MeiliItemImage[] }) => {
         <div
           style={{
             backgroundImage: `url(${imageUrl})`,
-            backgroundSize: "cover",
+            backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
-            backgroundPosition: "top",
+            backgroundPosition: "center",
             width: "393.433px",
             height: "347px",
           }}
@@ -53,9 +53,9 @@ const ItemImages = (props: { imageArray: MeiliItemImage[] }) => {
         <div
           style={{
             backgroundImage: `url(${imageUrl})`,
-            backgroundSize: "cover",
+            backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
-            backgroundPosition: "top",
+            backgroundPosition: "center",
             width: "393.433px",
             height: "243px",
           }}

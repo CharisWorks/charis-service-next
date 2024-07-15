@@ -22,11 +22,11 @@ const ItemCard = (props: { item: MeiliItemHit }) => {
     marginLeft: "auto",
     marginRight: "auto",
   });
-  const imageStyle = css({
-    borderRadius: "50%",
-    width: "auto",
-    height: "100%",
-  });
+  // const imageStyle = css({
+  //   borderRadius: "50%",
+  //   width: "auto",
+  //   height: "100%",
+  // });
   const workerStyle = css({
     fontSize: "12px",
     width: "100%",
@@ -52,15 +52,27 @@ const ItemCard = (props: { item: MeiliItemHit }) => {
   return (
     <Link href={`/item/${props.item.id}`} scroll={false}>
       <div className={cardStyle}>
-        <div className={imageWrapperStyle}>
-          <Image
+        <div
+          style={{
+            width: "150px",
+            height: "150px",
+            marginLeft: "auto",
+            marginRight: "auto",
+            backgroundImage: `url(${props.item.thumbnail_url})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            borderRadius: "50%",
+          }}
+        >
+          {/* <Image
             src={props.item.thumbnail_url}
             width={0}
             height={0}
             sizes="100vw"
             className={imageStyle}
             alt={"Picture of the author"}
-          />
+          /> */}
         </div>
         <p className={workerStyle}>{props.item.worker}</p>
         <p className={costStyle}>￥{props.item.price}</p>

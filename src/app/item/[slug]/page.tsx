@@ -1,9 +1,10 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import Description from "../../_components/Description";
 import { MeiliItemHit } from "@/api/meili";
-import { GetItem } from "@/api/gobackend";
+import { Checkout, GetItem } from "@/api/gobackend";
 import { css } from "../../../../styled-system/css";
 import Header from "../../_components/Header";
 import Button from "@/app/_components/Button";
@@ -24,7 +25,6 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
       await fetchItems();
     })();
   }, [params.slug]);
-  //実験
   const quantityRef = useRef<HTMLSelectElement>(null);
   const [quantity, setQuantity] = useState<number>(1);
   const selectQuantity = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -40,6 +40,7 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
       setPurchaseValidation(true);
     }
   }, [quantityArray]);
+  const router = useRouter();
 
   const errorMessage = css({
     color: "star",
@@ -195,8 +196,14 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
                     {purchaseValidation ? (
                       <Button
                         name="購入"
-                        clickHandler={() => {
-                          console.log(quantity);
+                        clickHandler={async () => {
+                          if (item?.id) {
+                            const p = { itemId: parseInt(item.id), quantity };
+                            const data = await Checkout(p);
+                            if (data.data?.url) {
+                              router.push(data.data.url);
+                            }
+                          }
                         }}
                       />
                     ) : (

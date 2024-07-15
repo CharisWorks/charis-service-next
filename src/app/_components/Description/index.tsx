@@ -60,6 +60,8 @@ export const Description = (props: { overview: string }) => {
       paddingRight: "10px",
       paddingLeft: "10px",
       borderRadius: "5px",
+      marginTop: "20px",
+      marginBottom: "20px",
     },
     "& table": {
       borderCollapse: "collapse",

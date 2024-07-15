@@ -1,4 +1,5 @@
 import { defineConfig } from "@pandacss/dev";
+import { Smokum } from "next/font/google";
 
 export default defineConfig({
   // Whether to use css reset
@@ -16,10 +17,13 @@ export default defineConfig({
       semanticTokens: {
         colors: {
           night: { value: "#002D52" },
-          star: { value: "#BFA45E" }
-        }
+          star: { value: "#BFA45E" },
+        },
       },
-      breakpoints: {}
+      breakpoints: {
+        sm: "500px",
+        lg: "1210px",
+      },
     },
   },
 

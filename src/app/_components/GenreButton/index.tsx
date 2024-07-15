@@ -7,18 +7,28 @@ const GenreButton = (props: {
 }) => {
   const trueButtonStyle = css({
     color: "night",
-    width: "205px",
+    sm: {
+      width: "205px",
+    },
+    width: "135px",
     height: "43px",
     cursor: "pointer",
   });
   const trueTopDivStyle = css({
-    width: "200px",
+    sm: {
+      width: "200px",
+    },
+    width: "130px",
     height: "37px",
     border: "3px solid #BFA45E",
     bgColor: "night",
+    paddingRight: "10px",
   });
   const trueBottomDivStyle = css({
-    width: "200px",
+    sm: {
+      width: "200px",
+    },
+    width: "130px",
     height: "37px",
     border: "3px solid #BFA45E",
     marginLeft: "-5px",
@@ -28,18 +38,28 @@ const GenreButton = (props: {
 
   const falseButtonStyle = css({
     color: "star",
-    width: "205px",
+    sm: {
+      width: "205px",
+    },
+    width: "135px",
     height: "43px",
     cursor: "pointer",
   });
   const falseTopDivStyle = css({
-    width: "200px",
+    sm: {
+      width: "200px",
+    },
+    width: "130px",
     height: "37px",
     border: "3px solid #BFA45E",
     bgColor: "night",
+    paddingRight: "10px",
   });
   const falseBottomDivStyle = css({
-    width: "200px",
+    sm: {
+      width: "200px",
+    },
+    width: "130px",
     height: "37px",
     border: "3px solid #BFA45E",
     marginLeft: "-5px",
@@ -51,12 +71,16 @@ const GenreButton = (props: {
     <>
       {props.selected ? (
         <button className={trueButtonStyle} onClick={props.clickHandler}>
-          <div className={trueTopDivStyle}>{props.name}</div>
+          <div className={trueTopDivStyle}>
+            <p>{props.name}</p>
+          </div>
           <div className={trueBottomDivStyle}></div>
         </button>
       ) : (
         <button className={falseButtonStyle} onClick={props.clickHandler}>
-          <div className={falseTopDivStyle}>{props.name}</div>
+          <div className={falseTopDivStyle}>
+            <p>{props.name}</p>
+          </div>
           <div className={falseBottomDivStyle}></div>
         </button>
       )}
