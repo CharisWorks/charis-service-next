@@ -9,6 +9,7 @@ import Loading from "./_components/Loading";
 import { css } from "../../styled-system/css";
 import { defineConfig } from "@pandacss/dev";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 defineConfig({
   theme: {
     extend: {
@@ -23,6 +24,7 @@ defineConfig({
 });
 const Home = () => {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const [keyword, setKeyword] = useState<string>("");
   const [items, setItems] = useState<MeiliItemHit[]>([]);
@@ -63,7 +65,27 @@ const Home = () => {
       setFadeOut(true);
     }, 1800);
   }, [items]);
-
+  function routinghandler({
+    keyword,
+    genre,
+  }: {
+    keyword?: string;
+    genre?: string;
+  }) {
+    const url = new URL("http://localhost:3000");
+    if (keyword) {
+      url.searchParams.set("q", keyword);
+    } else {
+      url.searchParams.delete("q");
+    }
+    if (genre) {
+      url.searchParams.set("genre", genre);
+    } else {
+      url.searchParams.delete("genre");
+    }
+    console.log(url.toString());
+    router.push(url.toString());
+  }
   return (
     <>
       {isLoading ? (
@@ -87,14 +109,9 @@ const Home = () => {
               <div className={innerButtonWrapperStyle}>
                 <Button
                   name="検索"
-                  clickHandler={async () => {
-                    const url = new URL(window.location.href);
-                    if (keyword !== "") {
-                      url.searchParams.set("q", keyword);
-                    } else {
-                      url.searchParams.delete("q");
-                    }
-                    window.location.href = url.toString();
+                  clickHandler={() => {
+                    setQuery(keyword);
+                    routinghandler({ keyword: keyword, genre: genre });
                   }}
                 />
               </div>
@@ -107,23 +124,17 @@ const Home = () => {
                   selected={genre === "bracelet"}
                   clickHandler={() => {
                     if (genre === "bracelet") {
-                      const url = new URL(window.location.href);
-                      url.searchParams.delete("genre");
-                      if (keyword !== "") {
-                        url.searchParams.set("q", keyword);
-                      } else {
-                        url.searchParams.delete("q");
-                      }
-                      window.location.href = url.toString();
+                      setGenre("");
+                      routinghandler({
+                        keyword: keyword,
+                        genre: "",
+                      });
                     } else {
-                      const url = new URL(window.location.href);
-                      url.searchParams.set("genre", "bracelet");
-                      if (keyword !== "") {
-                        url.searchParams.set("q", keyword);
-                      } else {
-                        url.searchParams.delete("q");
-                      }
-                      window.location.href = url.toString();
+                      setGenre("bracelet");
+                      routinghandler({
+                        keyword: keyword,
+                        genre: "bracelet",
+                      });
                     }
                   }}
                 />
@@ -133,23 +144,17 @@ const Home = () => {
                   selected={genre === "ribbon"}
                   clickHandler={() => {
                     if (genre === "ribbon") {
-                      const url = new URL(window.location.href);
-                      url.searchParams.delete("genre");
-                      if (keyword !== "") {
-                        url.searchParams.set("q", keyword);
-                      } else {
-                        url.searchParams.delete("q");
-                      }
-                      window.location.href = url.toString();
+                      setGenre("");
+                      routinghandler({
+                        keyword: keyword,
+                        genre: "",
+                      });
                     } else {
-                      const url = new URL(window.location.href);
-                      url.searchParams.set("genre", "ribbon");
-                      if (keyword !== "") {
-                        url.searchParams.set("q", keyword);
-                      } else {
-                        url.searchParams.delete("q");
-                      }
-                      window.location.href = url.toString();
+                      setGenre("ribbon");
+                      routinghandler({
+                        keyword: keyword,
+                        genre: "ribbon",
+                      });
                     }
                   }}
                 />
