@@ -11,7 +11,7 @@ import SoldOutButton from "../../_components/SoldOutButton";
 import ItemImages from "../../_components/ItemImages";
 import Loading from "../../_components/Loading";
 
-export default function ItemPage({ params }: { params: { slug: string } }) {
+const ItemPage = ({ params }: { params: { slug: string } }) => {
   const [item, setItems] = useState<MeiliItemHit>();
   const quantityRef = useRef<HTMLSelectElement>(null);
   const [quantity, setQuantity] = useState<number>(1);
@@ -132,7 +132,7 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
       )}
     </>
   );
-}
+};
 
 const errorMessage = css({
   color: "star",
@@ -237,3 +237,5 @@ const selectInnerStyle = css({
 const quantityStyle = css({
   fontSize: "20px",
 });
+
+export default ItemPage;
