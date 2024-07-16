@@ -3,7 +3,6 @@ import React, { Suspense, useEffect, useState } from "react";
 import { MeiliItemHit, Search } from "@/api/meili";
 import Card from "./_components/Card";
 import Button from "./_components/Button";
-import TopHeader from "./_components/TopHeader";
 import GenreButton from "./_components/GenreButton";
 import Loading from "./_components/Loading";
 import { css } from "../../styled-system/css";
@@ -96,7 +95,6 @@ const Home = () => {
         <>
           {fadeOut ? <></> : <Loading isLoading={false} />}
           <div className={containerStyle}>
-            {/* <TopHeader /> */}
             <h1 className={titleStyle}>美しいものを探す旅にでかけませんか？</h1>
             <input
               type="text"
