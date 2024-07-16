@@ -124,7 +124,7 @@ const ItemPage = ({ params }: { params: { slug: string } }) => {
                   </div>
                 </div>
               </div>
-              {/*******************************************************************/}
+
               <div className={mainMobileStyle}>
                 <div className={mainImageMobileStyle}>
                   {typeof item?.images !== "undefined" ? (
@@ -147,6 +147,7 @@ const ItemPage = ({ params }: { params: { slug: string } }) => {
                       <p className={taxStyle}>税込</p>
                     </div>
                   </div>
+                  {/*******************************************************************/}
                   <div className={purchaseAndSelectWrapperMobileStyle}>
                     <div className={selectInnerStyle}>
                       <p className={quantityStyle}>数量</p>
@@ -185,9 +186,48 @@ const ItemPage = ({ params }: { params: { slug: string } }) => {
                       )}
                     </div>
                   </div>
+                  {/*******************************************************************/}
+                  <div className={purchaseAndSelectWrapperSmallMobileStyle}>
+                    <div className={selectInnerStyle}>
+                      <p className={quantityStyle}>数量</p>
+                      <select
+                        ref={quantityRef}
+                        value={quantity}
+                        onChange={selectQuantity}
+                        className={selectSmallMobileStyle}
+                      >
+                        {quantityArray.map((quantity, index) => (
+                          <option value={quantity} key={index}>
+                            {quantity}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className={purchaseButtonWrapperStyle}>
+                      {purchaseValidation ? (
+                        <Button
+                          name="購入"
+                          clickHandler={async () => {
+                            if (item?.id) {
+                              const p = {
+                                itemId: parseInt(item.id),
+                                quantity,
+                              };
+                              const data = await Checkout(p);
+                              if (data.data?.url) {
+                                router.push(data.data.url);
+                              }
+                            }
+                          }}
+                        />
+                      ) : (
+                        <SoldOutButton name="SOLD OUT" />
+                      )}
+                    </div>
+                  </div>
+                  {/*******************************************************************/}
                 </div>
               </div>
-              {/*******************************************************************/}
               <Description overview={item?.description ?? ""} />
             </div>
           </div>
@@ -309,10 +349,30 @@ const purchaseAndSelectWrapperMobileStyle = css({
   marginLeft: "auto",
   display: "flex",
   gap: "20px",
+  hideBelow: "item_lg",
 });
+//small mobile
+const purchaseAndSelectWrapperSmallMobileStyle = css({
+  width: "280px",
+  marginLeft: "auto",
+  display: "flex",
+  gap: "20px",
+  hideFrom: "item_lg",
+});
+//pc
 const selectStyle = css({
   color: "star",
   width: "205px",
+  height: "42.5px",
+  fontSize: "16px",
+  cursor: "pointer",
+  border: "3px solid #BFA45E",
+  textAlign: "center",
+});
+//small mobile
+const selectSmallMobileStyle = css({
+  color: "star",
+  width: "55px",
   height: "42.5px",
   fontSize: "16px",
   cursor: "pointer",
@@ -336,6 +396,7 @@ const selectInnerStyle = css({
   marginLeft: "auto",
   marginRight: "auto",
 });
+const selectInnerSmallMobileStyle = css({});
 const quantityStyle = css({
   fontSize: "20px",
 });
