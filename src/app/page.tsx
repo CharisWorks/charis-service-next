@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { MeiliItemHit, Search } from "@/api/meili";
 import Card from "./_components/Card";
 import Button from "./_components/Button";
@@ -264,4 +264,11 @@ const CardContainerStyle = css({
   width: "100%",
 });
 
-export default Home;
+const Page = () => {
+  return (
+    <Suspense fallback={<Loading isLoading={true} />}>
+      <Home />
+    </Suspense>
+  );
+};
+export default Page;
