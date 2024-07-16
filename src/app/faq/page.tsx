@@ -25,37 +25,6 @@ const Faq = () => {
       setFadeOut(true);
     }, 1800);
   }, []);
-  const containerStyle = css({
-    bgColor: "night",
-    width: "100%",
-    maxWidth: "1044px",
-    minHeight: "100lvh",
-    paddingTop: "185px",
-    paddingBottom: "100px",
-    paddingRight: "10px",
-    paddingLeft: "10px",
-    marginLeft: "auto",
-    marginRight: "auto",
-  });
-
-  const titleStyle = css({
-    color: "star",
-    fontSize: "40px",
-    textAlign: "center",
-    marginBottom: "60px",
-  });
-  const contentStyle = css({
-    color: "star",
-    textAlign: "left",
-    paddingBottom: "50px",
-  });
-  const questionStyle = css({
-    fontSize: "20px",
-    paddingBottom: "12px",
-  });
-  const answerStyle = css({
-    fontSize: "20px",
-  });
 
   return (
     <>
@@ -75,5 +44,37 @@ const Faq = () => {
     </>
   );
 };
+
+const containerStyle = css({
+  bgColor: "night",
+  width: "100%",
+  maxWidth: "1044px",
+  minHeight: "100lvh",
+  paddingTop: "185px",
+  paddingBottom: "100px",
+  paddingRight: "10px",
+  paddingLeft: "10px",
+  marginLeft: "auto",
+  marginRight: "auto",
+});
+
+const titleStyle = css({
+  color: "star",
+  fontSize: "40px",
+  textAlign: "center",
+  marginBottom: "60px",
+});
+const contentStyle = css({
+  color: "star",
+  textAlign: "left",
+  paddingBottom: "50px",
+});
+const questionStyle = css({
+  fontSize: "20px",
+  paddingBottom: "12px",
+});
+const answerStyle = css({
+  fontSize: "20px",
+});
 
 export default Faq;

@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import dynamic from "next/dynamic";
 import Description from "../../_components/Description";
 import { MeiliItemHit } from "@/api/meili";
 import { Checkout, GetItem } from "@/api/gobackend";
@@ -18,6 +17,7 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
   const [quantity, setQuantity] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [fadeOut, setFadeOut] = useState<boolean>(false);
+  const router = useRouter();
   const fetchItems = async () => {
     const { data } = await GetItem(params.slug);
     setItems(data);
