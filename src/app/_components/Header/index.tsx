@@ -26,6 +26,9 @@ const Header = () => {
           <Link href="/terms" scroll={false}>
             プライバシーポリシー
           </Link>
+          <Link href="/specified-commercial-transaction-act" scroll={false}>
+            特定商取引法に基づく表記
+          </Link>
         </div>
         <div className={creditStyle}>
           <a href="http://yukiosada.work/">designed by Myxogastria0808</a>
@@ -55,6 +58,7 @@ const HeaderStyle = css({
   marginRight: "auto",
 });
 const LinkBoxStyle = css({
+  hideBelow: "header_sm",
   width: "100%",
   maxWidth: "200px",
   color: "star",
@@ -62,6 +66,7 @@ const LinkBoxStyle = css({
   marginLeft: "40px",
 });
 const creditStyle = css({
+  hideBelow: "header_sm",
   width: "100%",
   color: "star",
   fontSize: "16px",

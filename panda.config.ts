@@ -36,6 +36,7 @@ export default defineConfig({
         // item_md: "100px",
         item_lg: "655px",
         item_xl: "1069px",
+        header_sm: "1230px",
         sm: "980px",
         md: "1140px",
         lg: "1320px",

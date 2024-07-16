@@ -9,7 +9,19 @@ import Loading from "./_components/Loading";
 import { css } from "../../styled-system/css";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-
+import { defineConfig } from "@pandacss/dev";
+defineConfig({
+  theme: {
+    extend: {
+      breakpoints: {
+        sm: "980px",
+        md: "1140px",
+        lg: "1320px",
+        xl: "1480px",
+      },
+    },
+  },
+});
 const Home = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -255,7 +267,6 @@ const CardWrapperStyle = css({
   alignItems: "stretch",
   alignContent: "stretch",
   width: ["300px", "600px", "600px", "900px", "1600px"],
-  maxWidth: "1210px",
 });
 const CardContainerStyle = css({
   display: "flex",
