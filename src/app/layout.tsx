@@ -45,10 +45,6 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
-  const baseStyle = css({
-    bgColor: "night",
-    width: "100%",
-  });
   return (
     <html lang="ja">
       <body className={font.className}>
@@ -57,5 +53,10 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
     </html>
   );
 };
+
+const baseStyle = css({
+  bgColor: "night",
+  width: "100%",
+});
 
 export default RootLayout;

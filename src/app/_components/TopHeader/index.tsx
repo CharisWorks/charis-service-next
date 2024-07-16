@@ -3,34 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 const TopHeader = () => {
-  const TopHeaderStyle = css({
-    width: "100%",
-    height: "69px",
-    display: "flex",
-    marginBottom: "69px",
-  });
-  const TopHeaderSpaceStyle = css({
-    width: "100%",
-    height: "60px",
-  });
-  const LinkBoxStyle = css({
-    width: "100%",
-    maxWidth: "200px",
-    color: "star",
-    fontSize: "16px",
-    marginLeft: "40px",
-  });
-  const creditStyle = css({
-    width: "100%",
-    color: "star",
-    fontSize: "16px",
-    textAlign: "right",
-  });
-  const ImageWrapper = css({
-    width: "280px",
-    height: "69px",
-  });
-
   return (
     <>
       <div className={TopHeaderSpaceStyle}></div>
@@ -65,5 +37,33 @@ const TopHeader = () => {
     </>
   );
 };
+
+const TopHeaderStyle = css({
+  width: "100%",
+  height: "69px",
+  display: "flex",
+  marginBottom: "69px",
+});
+const TopHeaderSpaceStyle = css({
+  width: "100%",
+  height: "60px",
+});
+const LinkBoxStyle = css({
+  width: "100%",
+  maxWidth: "200px",
+  color: "star",
+  fontSize: "16px",
+  marginLeft: "40px",
+});
+const creditStyle = css({
+  width: "100%",
+  color: "star",
+  fontSize: "16px",
+  textAlign: "right",
+});
+const ImageWrapper = css({
+  width: "280px",
+  height: "69px",
+});
 
 export default TopHeader;

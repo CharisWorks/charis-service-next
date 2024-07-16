@@ -1,41 +1,17 @@
 "use client";
 import { css } from "../../../../styled-system/css";
 import { MeiliItemImage } from "@/api/meili";
-import { useEffect, useState } from "react";
-
-type ImageStyleType = {
-  background: string;
-  backgroundSize: string;
-  backgroundRepeat: string;
-  backgroundPosition: string;
-  width: string;
-  height: string;
-};
+import { useState } from "react";
 
 const ItemImages = (props: { imageArray: MeiliItemImage[] }) => {
   const [imageUrl, setImageUrl] = useState<string>(
     props.imageArray[0].large_url
   );
-
-  const itemImagesStyle = css({
-    width: "100%",
-  });
-  const buttonWrapperStyle = css({
-    display: "flex",
-    justifyContent: "flex-start",
-    gap: "5px",
-    marginTop: "5px",
-  });
-  const buttonStyle = css({
-    flexGrow: 1,
-    cursor: "pointer",
-  });
   const itemImageButtonWrapper = (index: number) => {
     if (typeof props.imageArray === "undefined") return;
     const imageUrl = props.imageArray[index];
     setImageUrl(imageUrl.large_url);
   };
-
   return (
     <div className={itemImagesStyle}>
       {props.imageArray.length === 1 ? (
@@ -89,5 +65,19 @@ const ItemImages = (props: { imageArray: MeiliItemImage[] }) => {
     </div>
   );
 };
+
+const itemImagesStyle = css({
+  width: "100%",
+});
+const buttonWrapperStyle = css({
+  display: "flex",
+  justifyContent: "flex-start",
+  gap: "5px",
+  marginTop: "5px",
+});
+const buttonStyle = css({
+  flexGrow: 1,
+  cursor: "pointer",
+});
 
 export default ItemImages;

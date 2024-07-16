@@ -74,42 +74,6 @@ const Terms = () => {
       setFadeOut(true);
     }, 1800);
   }, []);
-  const containerStyle = css({
-    bgColor: "night",
-    width: "100%",
-    maxWidth: "1044px",
-    minHeight: "100lvh",
-    paddingTop: "185px",
-    paddingBottom: "100px",
-    paddingRight: "10px",
-    paddingLeft: "10px",
-    marginLeft: "auto",
-    marginRight: "auto",
-  });
-  const titleStyle = css({
-    color: "star",
-    fontSize: "40px",
-    textAlign: "center",
-    marginBottom: "60px",
-  });
-  const termStyle = css({
-    color: "star",
-    "& h1": {
-      fontSize: "25px",
-      marginTop: "10px",
-      marginBottom: "10px",
-    },
-    "& h2": {
-      fontSize: "20px",
-      marginTop: "10px",
-      marginBottom: "10px",
-    },
-    "& p": {
-      fontSize: "16px",
-      marginTop: "10px",
-      marginBottom: "10px",
-    },
-  });
 
   return (
     <>
@@ -124,5 +88,42 @@ const Terms = () => {
     </>
   );
 };
+
+const containerStyle = css({
+  bgColor: "night",
+  width: "100%",
+  maxWidth: "1044px",
+  minHeight: "100lvh",
+  paddingTop: "185px",
+  paddingBottom: "100px",
+  paddingRight: "10px",
+  paddingLeft: "10px",
+  marginLeft: "auto",
+  marginRight: "auto",
+});
+const titleStyle = css({
+  color: "star",
+  fontSize: "40px",
+  textAlign: "center",
+  marginBottom: "60px",
+});
+const termStyle = css({
+  color: "star",
+  "& h1": {
+    fontSize: "25px",
+    marginTop: "10px",
+    marginBottom: "10px",
+  },
+  "& h2": {
+    fontSize: "20px",
+    marginTop: "10px",
+    marginBottom: "10px",
+  },
+  "& p": {
+    fontSize: "16px",
+    marginTop: "10px",
+    marginBottom: "10px",
+  },
+});
 
 export default Terms;

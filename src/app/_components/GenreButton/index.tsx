@@ -16,68 +16,6 @@ const GenreButton = (props: {
   selected: boolean;
   clickHandler: () => void;
 }) => {
-  const trueButtonStyle = css({
-    color: "night",
-    sm: {
-      width: "205px",
-    },
-    width: "135px",
-    height: "43px",
-    cursor: "pointer",
-  });
-  const trueTopDivStyle = css({
-    sm: {
-      width: "200px",
-    },
-    width: "130px",
-    height: "37px",
-    border: "3px solid #BFA45E",
-    bgColor: "night",
-    paddingRight: "10px",
-  });
-  const trueBottomDivStyle = css({
-    sm: {
-      width: "200px",
-    },
-    width: "130px",
-    height: "37px",
-    border: "3px solid #BFA45E",
-    marginLeft: "-5px",
-    marginTop: "-42px",
-    bgColor: "star",
-  });
-
-  const falseButtonStyle = css({
-    color: "star",
-    sm: {
-      width: "205px",
-    },
-    width: "135px",
-    height: "43px",
-    cursor: "pointer",
-  });
-  const falseTopDivStyle = css({
-    sm: {
-      width: "200px",
-    },
-    width: "130px",
-    height: "37px",
-    border: "3px solid #BFA45E",
-    bgColor: "night",
-    paddingRight: "10px",
-  });
-  const falseBottomDivStyle = css({
-    sm: {
-      width: "200px",
-    },
-    width: "130px",
-    height: "37px",
-    border: "3px solid #BFA45E",
-    marginLeft: "-5px",
-    marginTop: "-42px",
-    bgColor: "night",
-  });
-
   return (
     <>
       {props.selected ? (
@@ -98,5 +36,67 @@ const GenreButton = (props: {
     </>
   );
 };
+
+const trueButtonStyle = css({
+  color: "night",
+  sm: {
+    width: "205px",
+  },
+  width: "135px",
+  height: "43px",
+  cursor: "pointer",
+});
+const trueTopDivStyle = css({
+  sm: {
+    width: "200px",
+  },
+  width: "130px",
+  height: "37px",
+  border: "3px solid #BFA45E",
+  bgColor: "night",
+  paddingRight: "10px",
+});
+const trueBottomDivStyle = css({
+  sm: {
+    width: "200px",
+  },
+  width: "130px",
+  height: "37px",
+  border: "3px solid #BFA45E",
+  marginLeft: "-5px",
+  marginTop: "-42px",
+  bgColor: "star",
+});
+
+const falseButtonStyle = css({
+  color: "star",
+  sm: {
+    width: "205px",
+  },
+  width: "135px",
+  height: "43px",
+  cursor: "pointer",
+});
+const falseTopDivStyle = css({
+  sm: {
+    width: "200px",
+  },
+  width: "130px",
+  height: "37px",
+  border: "3px solid #BFA45E",
+  bgColor: "night",
+  paddingRight: "10px",
+});
+const falseBottomDivStyle = css({
+  sm: {
+    width: "200px",
+  },
+  width: "130px",
+  height: "37px",
+  border: "3px solid #BFA45E",
+  marginLeft: "-5px",
+  marginTop: "-42px",
+  bgColor: "night",
+});
 
 export default GenreButton;
