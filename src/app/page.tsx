@@ -8,6 +8,8 @@ import GenreButton from "./_components/GenreButton";
 import Loading from "./_components/Loading";
 import { css } from "../../styled-system/css";
 import { defineConfig } from "@pandacss/dev";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 defineConfig({
   theme: {
     extend: {
@@ -21,113 +23,71 @@ defineConfig({
   },
 });
 const Home = () => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
   const [keyword, setKeyword] = useState<string>("");
   const [items, setItems] = useState<MeiliItemHit[]>([]);
-  const [braceletOrRibbon, setBraceletOrRibbon] = useState<string>("bracelet");
+  const [genre, setGenre] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [fadeOut, setFadeOut] = useState<boolean>(false);
-
-  const fetchData = async (keyword: string) => {
-    const { data } = await Search([keyword]);
+  const [query, setQuery] = useState<string>("");
+  const fetchData = async () => {
+    const { data } = await Search([query ?? ""]);
     if (data?.hits) {
-      setItems(data.hits);
+      const items: MeiliItemHit[] = [];
+      if (genre) {
+        data?.hits.map((item) => {
+          if (item.genre === genre) {
+            items.push(item);
+          }
+        });
+        setItems(items);
+      } else {
+        setItems(data?.hits);
+      }
     }
   };
 
   useEffect(() => {
     (async () => {
-      await fetchData("");
+      await fetchData();
     })();
-  }, []);
+  }, [query, genre]);
 
-  const choiceBracelet = () => {
-    setBraceletOrRibbon("bracelet");
-  };
-  const choiceRibbon = () => {
-    setBraceletOrRibbon("ribbon");
-  };
+  useEffect(() => {
+    setGenre(searchParams.get("genre") ?? "");
+    setQuery(searchParams.get("q") ?? "");
+    setKeyword(searchParams.get("q") ?? "");
+  }, [searchParams]);
+
   useEffect(() => {
     setIsLoading(false);
     setTimeout(() => {
       setFadeOut(true);
     }, 1800);
   }, [items]);
-
-  const containerStyle = css({
-    bgColor: "night",
-    maxWidth: "1210px",
-    marginLeft: "auto",
-    marginRight: "auto",
-    paddingBottom: "100px",
-    minHeight: "100lvh",
-  });
-  const titleStyle = css({
-    color: "star",
-    fontSize: "30px",
-    textAlign: "center",
-  });
-  const searchStyle = css({
-    margin: "30px auto 0px",
-    outline: "none",
-    border: "none",
-    fontSize: "35px",
-    color: "star",
-    bgColor: "night",
-    textAlign: "center",
-    width: "100%",
-    height: "50px",
-    _placeholder: {
-      color: "star.700",
-    },
-  });
-  const buttonWrapperStyle = css({
-    width: "100%",
-  });
-  const innerButtonWrapperStyle = css({
-    marginTop: "30px",
-    marginRight: "auto",
-    marginLeft: "auto",
-    width: "200px",
-    height: "37px",
-  });
-  const genreStyle = css({
-    color: "star",
-    fontSize: "30px",
-    textAlign: "center",
-    marginTop: "30px",
-    marginBottom: "30px",
-  });
-  const genreButtonStyle = css({
-    width: "100%",
-    paddingBottom: "50px",
-  });
-  const genreButtonInnerStyle = css({
-    display: "flex",
-    width: "fit-content",
-    marginLeft: "auto",
-    marginRight: "auto",
-  });
-  const genreButtonSpaceStyle = css({
-    width: "30px",
-    height: "43px",
-  });
-  const CardWrapperStyle = css({
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "flex-start",
-    gap: "30px",
-    alignItems: "stretch",
-    alignContent: "stretch",
-    width: ["300px", "600px", "600px", "900px", "1600px"],
-    maxWidth: "1210px",
-  });
-  const CardContainerStyle = css({
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-  });
-
+  function routinghandler({
+    keyword,
+    genre,
+  }: {
+    keyword?: string;
+    genre?: string;
+  }) {
+    const url = new URL("http://localhost:3000");
+    if (keyword) {
+      url.searchParams.set("q", keyword);
+    } else {
+      url.searchParams.delete("q");
+    }
+    if (genre) {
+      url.searchParams.set("genre", genre);
+    } else {
+      url.searchParams.delete("genre");
+    }
+    console.log(url.toString());
+    router.push(url.toString());
+  }
   return (
     <>
       {isLoading ? (
@@ -140,6 +100,7 @@ const Home = () => {
             <h1 className={titleStyle}>美しいものを探す旅にでかけませんか？</h1>
             <input
               type="text"
+              defaultValue={query}
               onChange={(e) => {
                 setKeyword(e.target.value);
               }}
@@ -150,8 +111,9 @@ const Home = () => {
               <div className={innerButtonWrapperStyle}>
                 <Button
                   name="検索"
-                  clickHandler={async () => {
-                    await fetchData(keyword);
+                  clickHandler={() => {
+                    setQuery(keyword);
+                    routinghandler({ keyword: keyword, genre: genre });
                   }}
                 />
               </div>
@@ -159,53 +121,160 @@ const Home = () => {
             <h2 className={genreStyle}>ジャンル</h2>
             <div className={genreButtonStyle}>
               <div className={genreButtonInnerStyle}>
-                {braceletOrRibbon === "bracelet" ? (
-                  <>
-                    <GenreButton
-                      name="ブレスレッド"
-                      selected={true}
-                      clickHandler={choiceBracelet}
-                    />
-                    <div className={genreButtonSpaceStyle}></div>
-                    <GenreButton
-                      name="リボン"
-                      selected={false}
-                      clickHandler={choiceRibbon}
-                    />
-                  </>
-                ) : (
-                  <>
-                    <GenreButton
-                      name="ブレスレッド"
-                      selected={false}
-                      clickHandler={choiceBracelet}
-                    />
-                    <div className={genreButtonSpaceStyle}></div>
-                    <GenreButton
-                      name="リボン"
-                      selected={true}
-                      clickHandler={choiceRibbon}
-                    />
-                  </>
-                )}
+                <GenreButton
+                  name="ブレスレッド"
+                  selected={genre === "bracelet"}
+                  clickHandler={() => {
+                    if (genre === "bracelet") {
+                      setGenre("");
+                      routinghandler({
+                        keyword: keyword,
+                        genre: "",
+                      });
+                    } else {
+                      setGenre("bracelet");
+                      routinghandler({
+                        keyword: keyword,
+                        genre: "bracelet",
+                      });
+                    }
+                  }}
+                />
+                <div className={genreButtonSpaceStyle}></div>
+                <GenreButton
+                  name="リボン"
+                  selected={genre === "ribbon"}
+                  clickHandler={() => {
+                    if (genre === "ribbon") {
+                      setGenre("");
+                      routinghandler({
+                        keyword: keyword,
+                        genre: "",
+                      });
+                    } else {
+                      setGenre("ribbon");
+                      routinghandler({
+                        keyword: keyword,
+                        genre: "ribbon",
+                      });
+                    }
+                  }}
+                />
               </div>
             </div>
-            <div className={CardContainerStyle}>
-              <div className={CardWrapperStyle}>
-                {items.map((item, index) => {
-                  if (item.genre === braceletOrRibbon) {
+            {items.length !== 0 ? (
+              <div className={CardContainerStyle}>
+                <div className={CardWrapperStyle}>
+                  {items.map((item, index) => {
                     return <Card key={index} item={item} />;
-                  } else {
-                    return <React.Fragment key={index}></React.Fragment>;
-                  }
-                })}
+                  })}
+                </div>
+
               </div>
-            </div>
+            ) : (
+              <>
+                <h2 className={notFoundTitleStyle}>
+                  商品が見つかりませんでした。
+                </h2>
+                <h3 className={notFoundDescriptionStyle}>
+                  色やサイズなど、他のキーワードで検索してみてください。
+                </h3>
+              </>
+            )}
           </div>
         </>
       )}
     </>
   );
 };
+
+const containerStyle = css({
+  bgColor: "night",
+  maxWidth: "1210px",
+  marginLeft: "auto",
+  marginRight: "auto",
+  paddingBottom: "100px",
+  minHeight: "100lvh",
+});
+const titleStyle = css({
+  color: "star",
+  fontSize: "30px",
+  textAlign: "center",
+});
+const searchStyle = css({
+  margin: "30px auto 0px",
+  outline: "none",
+  border: "none",
+  fontSize: "35px",
+  color: "star",
+  bgColor: "night",
+  textAlign: "center",
+  width: "100%",
+  height: "50px",
+  _placeholder: {
+    color: "star.700",
+  },
+});
+const buttonWrapperStyle = css({
+  width: "100%",
+});
+const innerButtonWrapperStyle = css({
+  marginTop: "30px",
+  marginRight: "auto",
+  marginLeft: "auto",
+  width: "200px",
+  height: "37px",
+});
+const genreStyle = css({
+  color: "star",
+  fontSize: "30px",
+  textAlign: "center",
+  marginTop: "30px",
+  marginBottom: "30px",
+});
+const notFoundTitleStyle = css({
+  color: "star",
+  fontSize: "30px",
+  textAlign: "center",
+  marginTop: "30px",
+  marginBottom: "30px",
+});
+const notFoundDescriptionStyle = css({
+  color: "star",
+  fontSize: "20px",
+  textAlign: "center",
+  marginTop: "30px",
+  marginBottom: "30px",
+});
+const genreButtonStyle = css({
+  width: "100%",
+  paddingBottom: "50px",
+});
+const genreButtonInnerStyle = css({
+  display: "flex",
+  width: "fit-content",
+  marginLeft: "auto",
+  marginRight: "auto",
+});
+const genreButtonSpaceStyle = css({
+  width: "30px",
+  height: "43px",
+});
+const CardWrapperStyle = css({
+  display: "flex",
+  flexWrap: "wrap",
+  justifyContent: "flex-start",
+  gap: "30px",
+  alignItems: "stretch",
+  alignContent: "stretch",
+  width: ["300px", "600px", "600px", "900px", "1600px"],
+  maxWidth: "1210px",
+});
+const CardContainerStyle = css({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "100%",
+});
 
 export default Home;
