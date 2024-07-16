@@ -140,9 +140,20 @@ const ItemPage = ({ params }: { params: { slug: string } }) => {
                     <p className={tagStyle}>色: {item?.tags[0]}</p>
                     <p className={tagStyle}>長さ: {item?.tags[1]}</p>
                   </div>
+                  {/*******************************************************************/}
                   <div className={stockAndPriceWrapperStyle}>
                     <h3 className={stockStyle}>在庫: {item?.stock}個</h3>
                     <div className={priceWrapperStyle}>
+                      <h2 className={priceStyle}>¥ {item?.price}</h2>
+                      <p className={taxStyle}>税込</p>
+                    </div>
+                  </div>
+                  {/*******************************************************************/}
+                  <div className={stockAndPriceWrapperSmallMobileStyle}>
+                    <h3 className={stockSmallMobileStyle}>
+                      在庫: {item?.stock}個
+                    </h3>
+                    <div className={priceWrapperSmallMobileStyle}>
                       <h2 className={priceStyle}>¥ {item?.price}</h2>
                       <p className={taxStyle}>税込</p>
                     </div>
@@ -315,13 +326,29 @@ const tagWrapperStyle = css({
 const tagStyle = css({
   fontSize: "18px",
 });
+//pc
 const priceWrapperStyle = css({
   display: "flex",
+  hideBelow: "item_md",
 });
+//small mobile
+const priceWrapperSmallMobileStyle = css({
+  display: "flex",
+  justifyContent: "flex-end",
+  hideFrom: "item_md",
+});
+//pc
 const stockStyle = css({
   fontSize: "24px",
   marginTop: "auto",
   marginBottom: "13px",
+  hideFrom: "item_md",
+});
+//small mobile
+const stockSmallMobileStyle = css({
+  fontSize: "24px",
+  marginTop: "auto",
+  hideFrom: "item_md",
 });
 const priceStyle = css({
   fontSize: "48px",
@@ -331,10 +358,17 @@ const taxStyle = css({
   marginBottom: "auto",
   paddingLeft: "10px",
 });
+//pc
 const stockAndPriceWrapperStyle = css({
   display: "flex",
   justifyContent: "space-between",
   paddingBottom: "12px",
+  hideBelow: "item_md",
+});
+//small mobile
+const stockAndPriceWrapperSmallMobileStyle = css({
+  paddingBottom: "12px",
+  hideFrom: "item_md",
 });
 //pc
 const purchaseAndSelectWrapperStyle = css({
@@ -396,7 +430,6 @@ const selectInnerStyle = css({
   marginLeft: "auto",
   marginRight: "auto",
 });
-const selectInnerSmallMobileStyle = css({});
 const quantityStyle = css({
   fontSize: "20px",
 });

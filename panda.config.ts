@@ -1,5 +1,4 @@
 import { defineConfig } from "@pandacss/dev";
-import { Smokum } from "next/font/google";
 
 export default defineConfig({
   // Whether to use css reset
@@ -32,8 +31,7 @@ export default defineConfig({
         },
       },
       breakpoints: {
-        // item_sm: "10px",
-        // item_md: "100px",
+        item_md: "495px",
         item_lg: "655px",
         item_xl: "1069px",
         header_sm: "1230px",
