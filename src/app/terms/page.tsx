@@ -1,9 +1,10 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { css } from "../../../styled-system/css";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Header from "../_components/Header";
+import Loading from "../_components/Loading";
 
 const term = `
 # 個人情報保護方針（プライバシーポリシー）
@@ -67,6 +68,12 @@ const term = `
 `;
 
 const Terms = () => {
+  const [fadeOut, setFadeOut] = useState<boolean>(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setFadeOut(true);
+    }, 1800);
+  }, []);
   const containerStyle = css({
     bgColor: "night",
     width: "100%",
@@ -106,6 +113,7 @@ const Terms = () => {
 
   return (
     <>
+      {fadeOut ? <></> : <Loading isLoading={false} />}
       <Header />
       <div className={containerStyle}>
         <h1 className={titleStyle}>プライバシーポリシー</h1>
