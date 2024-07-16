@@ -1,8 +1,9 @@
+"use client";
 import { css } from "../../../../styled-system/css";
 import { MeiliItemImage } from "@/api/meili";
 import { useState } from "react";
 
-const ItemImages = (props: { imageArray: MeiliItemImage[] }) => {
+const ItemImagesMobile = (props: { imageArray: MeiliItemImage[] }) => {
   const [imageUrl, setImageUrl] = useState<string>(
     props.imageArray[0].large_url
   );
@@ -20,8 +21,8 @@ const ItemImages = (props: { imageArray: MeiliItemImage[] }) => {
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
-            width: "393.433px",
-            height: "347px",
+            width: "100%",
+            height: "305px",
           }}
         ></div>
       ) : (
@@ -31,8 +32,8 @@ const ItemImages = (props: { imageArray: MeiliItemImage[] }) => {
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
-            width: "393.433px",
-            height: "243px",
+            width: "100%",
+            height: "200px",
           }}
         ></div>
       )}
@@ -79,4 +80,4 @@ const buttonStyle = css({
   cursor: "pointer",
 });
 
-export default ItemImages;
+export default ItemImagesMobile;

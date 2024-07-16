@@ -10,6 +10,7 @@ import Button from "@/app/_components/Button";
 import SoldOutButton from "../../_components/SoldOutButton";
 import ItemImages from "../../_components/ItemImages";
 import Loading from "../../_components/Loading";
+import ItemImagesMobile from "../../_components/ItemImagesMobile";
 
 const ItemPage = ({ params }: { params: { slug: string } }) => {
   const [item, setItems] = useState<MeiliItemHit>();
@@ -125,9 +126,9 @@ const ItemPage = ({ params }: { params: { slug: string } }) => {
               </div>
               {/*******************************************************************/}
               <div className={mainMobileStyle}>
-                <div className={mainImageStyle}>
+                <div className={mainImageMobileStyle}>
                   {typeof item?.images !== "undefined" ? (
-                    <ItemImages imageArray={item?.images} />
+                    <ItemImagesMobile imageArray={item?.images} />
                   ) : (
                     <p className={errorMessage}>Loading...</p>
                   )}
@@ -186,6 +187,7 @@ const ItemPage = ({ params }: { params: { slug: string } }) => {
                   </div>
                 </div>
               </div>
+              {/*******************************************************************/}
               <Description overview={item?.description ?? ""} />
             </div>
           </div>
@@ -250,12 +252,19 @@ const itemNameStyle = css({
 //mobile
 const itemNameMobileStyle = css({
   marginTop: "40px",
-  fontSize: "30px",
+  fontSize: "40px",
   textAlign: "center",
 });
-
+//pc
 const mainImageStyle = css({
   width: "412px",
+});
+//mobile
+const mainImageMobileStyle = css({
+  width: "100%",
+  maxWidth: "600px",
+  marginLeft: "auto",
+  marginRight: "auto",
 });
 const workerStyle = css({
   fontSize: "16px",
@@ -296,10 +305,10 @@ const purchaseAndSelectWrapperStyle = css({
 });
 //mobile
 const purchaseAndSelectWrapperMobileStyle = css({
-  width: "410px",
-
+  width: "430px",
   marginLeft: "auto",
   display: "flex",
+  gap: "20px",
 });
 const selectStyle = css({
   color: "star",

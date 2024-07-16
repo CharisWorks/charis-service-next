@@ -34,7 +34,7 @@ export default defineConfig({
       breakpoints: {
         // item_sm: "10px",
         // item_md: "100px",
-        // item_lg: "900px",
+        item_lg: "655px",
         item_xl: "1069px",
         sm: "980px",
         md: "1140px",
