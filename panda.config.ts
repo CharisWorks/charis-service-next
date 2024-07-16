@@ -28,6 +28,7 @@ export default defineConfig({
         },
         fadeOut: {
           "0%": { zIndex: "10", opacity: "1" },
+          "50%": { zIndex: "5", opacity: "0.9" },
           "100%": { zIndex: "-1", opacity: "0" },
         },
       },

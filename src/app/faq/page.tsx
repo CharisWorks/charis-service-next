@@ -1,7 +1,8 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../_components/Header";
 import { css } from "../../../styled-system/css";
+import Loading from "../_components/Loading";
 
 const faq: { question: string; answer: string }[] = [
   {
@@ -18,6 +19,12 @@ const faq: { question: string; answer: string }[] = [
 ];
 
 const Faq = () => {
+  const [fadeOut, setFadeOut] = useState<boolean>(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setFadeOut(true);
+    }, 1800);
+  }, []);
   const containerStyle = css({
     bgColor: "night",
     width: "100%",
@@ -52,6 +59,7 @@ const Faq = () => {
 
   return (
     <>
+      {fadeOut ? <></> : <Loading isLoading={false} />}
       <Header />
       <div className={containerStyle}>
         <h1 className={titleStyle}>Q & A</h1>

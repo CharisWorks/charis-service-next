@@ -48,6 +48,7 @@ const Home = () => {
       }
     }
   };
+
   useEffect(() => {
     (async () => {
       await fetchData();
@@ -59,6 +60,7 @@ const Home = () => {
     setQuery(searchParams.get("q") ?? "");
     setKeyword(searchParams.get("q") ?? "");
   }, [searchParams]);
+
   useEffect(() => {
     setIsLoading(false);
     setTimeout(() => {
@@ -167,6 +169,7 @@ const Home = () => {
                     return <Card key={index} item={item} />;
                   })}
                 </div>
+
               </div>
             ) : (
               <>

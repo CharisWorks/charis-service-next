@@ -9,13 +9,15 @@ import { css } from "../../../../styled-system/css";
 import Header from "../../_components/Header";
 import Button from "@/app/_components/Button";
 import SoldOutButton from "../../_components/SoldOutButton";
-
-const ItemImages = dynamic(() => import("../../_components/ItemImages"), {
-  ssr: false,
-});
+import ItemImages from "../../_components/ItemImages";
+import Loading from "../../_components/Loading";
 
 export default function ItemPage({ params }: { params: { slug: string } }) {
   const [item, setItems] = useState<MeiliItemHit>();
+  const quantityRef = useRef<HTMLSelectElement>(null);
+  const [quantity, setQuantity] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [fadeOut, setFadeOut] = useState<boolean>(false);
   const fetchItems = async () => {
     const { data } = await GetItem(params.slug);
     setItems(data);
@@ -25,8 +27,12 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
       await fetchItems();
     })();
   }, [params.slug]);
-  const quantityRef = useRef<HTMLSelectElement>(null);
-  const [quantity, setQuantity] = useState<number>(1);
+  useEffect(() => {
+    setIsLoading(false);
+    setTimeout(() => {
+      setFadeOut(true);
+    }, 1800);
+  }, [item]);
   const selectQuantity = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setQuantity(Number(e.target.value));
   };
@@ -40,79 +46,90 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
       setPurchaseValidation(true);
     }
   }, [quantityArray]);
-  const router = useRouter();
 
   return (
     <>
-      <Header />
-      <div className={containerStyle}>
-        <div className={ItemStyle}>
-          <div className={mainStyle}>
-            <div className={mainImageStyle}>
-              {typeof item?.images !== "undefined" ? (
-                <ItemImages imageArray={item?.images} />
-              ) : (
-                <p className={errorMessage}>Loading...</p>
-              )}
-            </div>
-            <div className={mainContentStyle}>
-              <h1 className={itemNameStyle}>{item?.item_name}</h1>
-              <p className={workerStyle}>出品者: {item?.worker}</p>
-              <div className={tagWrapperStyle}>
-                <p className={tagStyle}>色: {item?.tags[0]}</p>
-                <p className={tagStyle}>長さ: {item?.tags[1]}</p>
-              </div>
-              <div className={stockAndPriceWrapperStyle}>
-                <h3 className={stockStyle}>在庫: {item?.stock}個 (n → ∞)</h3>
-                <div className={priceWrapperStyle}>
-                  <h2 className={priceStyle}>¥ {item?.price}</h2>
-                  <p className={taxStyle}>税込</p>
+      {isLoading ? (
+        <Loading isLoading={true} />
+      ) : (
+        <>
+          {fadeOut ? <></> : <Loading isLoading={false} />}
+          <Header />
+          <div className={containerStyle}>
+            <div className={ItemStyle}>
+              <div className={mainStyle}>
+                <div className={mainImageStyle}>
+                  {typeof item?.images !== "undefined" ? (
+                    <ItemImages imageArray={item?.images} />
+                  ) : (
+                    <p className={errorMessage}>Loading...</p>
+                  )}
                 </div>
-              </div>
-              <div className={purchaseAndSelectWrapperStyle}>
-                <div className={selectWrapperStyle}>
-                  <div className={selectInnerStyle}>
-                    <p className={quantityStyle}>数量</p>
-                    <select
-                      ref={quantityRef}
-                      value={quantity}
-                      onChange={selectQuantity}
-                      className={selectStyle}
-                    >
-                      {quantityArray.map((quantity, index) => (
-                        <option value={quantity} key={index}>
-                          {quantity}
-                        </option>
-                      ))}
-                    </select>
+                <div className={mainContentStyle}>
+                  <h1 className={itemNameStyle}>{item?.item_name}</h1>
+                  <p className={workerStyle}>出品者: {item?.worker}</p>
+                  <div className={tagWrapperStyle}>
+                    <p className={tagStyle}>色: {item?.tags[0]}</p>
+                    <p className={tagStyle}>長さ: {item?.tags[1]}</p>
+                  </div>
+                  <div className={stockAndPriceWrapperStyle}>
+                    <h3 className={stockStyle}>
+                      在庫: {item?.stock}個 (n → ∞)
+                    </h3>
+                    <div className={priceWrapperStyle}>
+                      <h2 className={priceStyle}>¥ {item?.price}</h2>
+                      <p className={taxStyle}>税込</p>
+                    </div>
+                  </div>
+                  <div className={purchaseAndSelectWrapperStyle}>
+                    <div className={selectWrapperStyle}>
+                      <div className={selectInnerStyle}>
+                        <p className={quantityStyle}>数量</p>
+                        <select
+                          ref={quantityRef}
+                          value={quantity}
+                          onChange={selectQuantity}
+                          className={selectStyle}
+                        >
+                          {quantityArray.map((quantity, index) => (
+                            <option value={quantity} key={index}>
+                              {quantity}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                    <div className={purchaseButtonWrapperStyle}>
+                      <div className={purchaseButtonInnerStyle}>
+                        {purchaseValidation ? (
+                          <Button
+                            name="購入"
+                            clickHandler={async () => {
+                              if (item?.id) {
+                                const p = {
+                                  itemId: parseInt(item.id),
+                                  quantity,
+                                };
+                                const data = await Checkout(p);
+                                if (data.data?.url) {
+                                  router.push(data.data.url);
+                                }
+                              }
+                            }}
+                          />
+                        ) : (
+                          <SoldOutButton name="SOLD OUT" />
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className={purchaseButtonWrapperStyle}>
-                  <div className={purchaseButtonInnerStyle}>
-                    {purchaseValidation ? (
-                      <Button
-                        name="購入"
-                        clickHandler={async () => {
-                          if (item?.id) {
-                            const p = { itemId: parseInt(item.id), quantity };
-                            const data = await Checkout(p);
-                            if (data.data?.url) {
-                              router.push(data.data.url);
-                            }
-                          }
-                        }}
-                      />
-                    ) : (
-                      <SoldOutButton name="SOLD OUT" />
-                    )}
-                  </div>
-                </div>
               </div>
+              <Description overview={item?.description ?? ""} />
             </div>
           </div>
-          <Description overview={item?.description ?? ""} />
-        </div>
-      </div>
+        </>
+      )}
     </>
   );
 }
