@@ -10,10 +10,15 @@ const Button = (props: { name: string; clickHandler: () => void }) => {
 };
 
 const buttonStyle = css({
-  color: "star",
+  color: "night",
   width: "205px",
   height: "43px",
   cursor: "pointer",
+  marginLeft: "5px",
+  _hover: {
+    transitionDuration: "0.2s",
+    opacity: "0.8",
+  },
 });
 const topDivStyle = css({
   fontSize: "16px",
@@ -28,7 +33,7 @@ const bottomDivStyle = css({
   border: "3px solid #BFA45E",
   marginLeft: "-5px",
   marginTop: "-42px",
-  bgColor: "night",
+  bgColor: "star",
 });
 
 export default Button;

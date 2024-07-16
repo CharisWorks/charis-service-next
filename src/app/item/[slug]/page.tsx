@@ -67,7 +67,11 @@ const ItemPage = ({ params }: { params: { slug: string } }) => {
                   )}
                 </div>
                 <div className={mainContentStyle}>
+                  {/*******************************************************************/}
                   <h1 className={itemNameStyle}>{item?.item_name}</h1>
+                  {/*******************************************************************/}
+                  <h1 className={itemNameMobileStyle}>{item?.item_name}</h1>
+                  {/*******************************************************************/}
                   <p className={workerStyle}>出品者: {item?.worker}</p>
                   <div className={tagWrapperStyle}>
                     <p className={tagStyle}>色: {item?.tags[0]}</p>
@@ -150,10 +154,8 @@ const ItemPage = ({ params }: { params: { slug: string } }) => {
                   </div>
                   {/*******************************************************************/}
                   <div className={stockAndPriceWrapperSmallMobileStyle}>
-                    <h3 className={stockSmallMobileStyle}>
-                      在庫: {item?.stock}個
-                    </h3>
-                    <div className={priceWrapperSmallMobileStyle}>
+                    <h3 className={stockMobileStyle}>在庫: {item?.stock}個</h3>
+                    <div className={priceWrapperMobileStyle}>
                       <h2 className={priceStyle}>¥ {item?.price}</h2>
                       <p className={taxStyle}>税込</p>
                     </div>
@@ -205,7 +207,7 @@ const ItemPage = ({ params }: { params: { slug: string } }) => {
                         ref={quantityRef}
                         value={quantity}
                         onChange={selectQuantity}
-                        className={selectSmallMobileStyle}
+                        className={selectStyle}
                       >
                         {quantityArray.map((quantity, index) => (
                           <option value={quantity} key={index}>
@@ -291,7 +293,7 @@ const mainContentStyle = css({
 //mobile
 const mainContentMobileStyle = css({
   width: "100%",
-  maxWidth: "800px",
+  maxWidth: "600px",
   color: "star",
   marginLeft: "auto",
   marginRight: "auto",
@@ -299,12 +301,14 @@ const mainContentMobileStyle = css({
 //pc
 const itemNameStyle = css({
   fontSize: "40px",
+  hideBelow: "item_xl",
 });
 //mobile
 const itemNameMobileStyle = css({
   marginTop: "40px",
-  fontSize: "40px",
+  fontSize: "35px",
   textAlign: "center",
+  hideFrom: "item_xl",
 });
 //pc
 const mainImageStyle = css({
@@ -329,26 +333,24 @@ const tagStyle = css({
 //pc
 const priceWrapperStyle = css({
   display: "flex",
-  hideBelow: "item_md",
 });
-//small mobile
-const priceWrapperSmallMobileStyle = css({
+//mobile
+const priceWrapperMobileStyle = css({
   display: "flex",
   justifyContent: "flex-end",
-  hideFrom: "item_md",
 });
 //pc
 const stockStyle = css({
   fontSize: "24px",
   marginTop: "auto",
   marginBottom: "13px",
-  hideFrom: "item_md",
+  hideFrom: "item_xl",
 });
-//small mobile
-const stockSmallMobileStyle = css({
+//mobile
+const stockMobileStyle = css({
   fontSize: "24px",
   marginTop: "auto",
-  hideFrom: "item_md",
+  hideFrom: "item_xl",
 });
 const priceStyle = css({
   fontSize: "48px",
@@ -380,33 +382,23 @@ const purchaseAndSelectWrapperStyle = css({
 //mobile
 const purchaseAndSelectWrapperMobileStyle = css({
   width: "430px",
-  marginLeft: "auto",
   display: "flex",
   gap: "20px",
   hideBelow: "item_lg",
+  marginLeft: "auto",
+  marginRight: "auto",
 });
 //small mobile
 const purchaseAndSelectWrapperSmallMobileStyle = css({
-  width: "280px",
-  marginLeft: "auto",
-  display: "flex",
-  gap: "20px",
+  width: "205px",
   hideFrom: "item_lg",
+  marginLeft: "auto",
+  marginRight: "auto",
 });
 //pc
 const selectStyle = css({
   color: "star",
   width: "205px",
-  height: "42.5px",
-  fontSize: "16px",
-  cursor: "pointer",
-  border: "3px solid #BFA45E",
-  textAlign: "center",
-});
-//small mobile
-const selectSmallMobileStyle = css({
-  color: "star",
-  width: "55px",
   height: "42.5px",
   fontSize: "16px",
   cursor: "pointer",

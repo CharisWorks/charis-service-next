@@ -96,7 +96,7 @@ const Home = () => {
         <>
           {fadeOut ? <></> : <Loading isLoading={false} />}
           <div className={containerStyle}>
-            <TopHeader />
+            {/* <TopHeader /> */}
             <h1 className={titleStyle}>美しいものを探す旅にでかけませんか？</h1>
             <input
               type="text"
@@ -199,6 +199,7 @@ const titleStyle = css({
   color: "star",
   fontSize: "30px",
   textAlign: "center",
+  paddingTop: "120px",
 });
 const searchStyle = css({
   margin: "30px auto 0px",

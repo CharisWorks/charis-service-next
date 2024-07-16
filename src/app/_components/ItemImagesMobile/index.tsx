@@ -78,6 +78,10 @@ const buttonWrapperStyle = css({
 const buttonStyle = css({
   flexGrow: 1,
   cursor: "pointer",
+  _hover: {
+    transitionDuration: "0.2s",
+    opacity: "0.7",
+  },
 });
 
 export default ItemImagesMobile;

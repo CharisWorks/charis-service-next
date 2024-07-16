@@ -45,6 +45,10 @@ const trueButtonStyle = css({
   width: "135px",
   height: "43px",
   cursor: "pointer",
+  _hover: {
+    transitionDuration: "0.2s",
+    opacity: "0.8",
+  },
 });
 const trueTopDivStyle = css({
   sm: {
@@ -76,6 +80,10 @@ const falseButtonStyle = css({
   width: "135px",
   height: "43px",
   cursor: "pointer",
+  _hover: {
+    transitionDuration: "0.2s",
+    opacity: "0.8",
+  },
 });
 const falseTopDivStyle = css({
   sm: {

@@ -31,10 +31,10 @@ export default defineConfig({
         },
       },
       breakpoints: {
-        item_md: "495px",
-        item_lg: "655px",
-        item_xl: "1069px",
         header_sm: "1230px",
+        item_md: "500px",
+        item_lg: "559px",
+        item_xl: "1069px",
         sm: "980px",
         md: "1140px",
         lg: "1320px",

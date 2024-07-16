@@ -38,6 +38,10 @@ const cardStyle = css({
   zIndex: 10,
   boxShadow: "8px 8px 0px 0px #002D52, 8px 8px 0px 3px #BFA45E",
   cursor: "pointer",
+  _hover: {
+    transitionDuration: "0.2s",
+    transform: "translateY(-10px)",
+  },
 });
 const workerStyle = css({
   fontSize: "12px",

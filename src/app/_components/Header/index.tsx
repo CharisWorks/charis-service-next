@@ -5,35 +5,16 @@ import Link from "next/link";
 const Header = () => {
   return (
     <div className={HeaderWrapperStyle}>
-      <div className={HeaderStyle}>
-        <Link href="/" className={ImageWrapper} scroll={false}>
-          <Image
-            src={"/logo.svg"}
-            width={176}
-            height={69}
-            alt={"Logo of charis WORKs"}
-          />
-        </Link>
-        <div className={LinkBoxStyle}>
-          <Link href="/about" scroll={false}>
-            charis WORKsについて
-          </Link>
-          <br />
-          <Link href="/faq" scroll={false}>
-            Q & A
-          </Link>
-          <br />
-          <Link href="/terms" scroll={false}>
-            プライバシーポリシー
-          </Link>
-          <Link href="/specified-commercial-transaction-act" scroll={false}>
-            特定商取引法に基づく表記
-          </Link>
-        </div>
-        <div className={creditStyle}>
-          <a href="http://yukiosada.work/">designed by Myxogastria0808</a>
-        </div>
-      </div>
+      <Link href="/" className={ImageWrapper} scroll={false}>
+        <Image
+          src={"/logo.svg"}
+          width={0}
+          height={0}
+          sizes="100vw"
+          style={{ width: "100%", height: "auto" }}
+          alt={"Logo of charis WORKs"}
+        />
+      </Link>
     </div>
   );
 };
@@ -41,41 +22,18 @@ const Header = () => {
 const HeaderWrapperStyle = css({
   position: "fixed",
   width: "100%",
-  height: "85px",
+  height: "100px",
   bgColor: "night",
-  boxShadow: "0px 0px 25px #0088ff",
+  borderBottom: "3px double #BFA45E",
   marginBottom: "25px",
-  zIndex: "1",
-});
-const HeaderStyle = css({
-  width: "100%",
-  maxWidth: "1210px",
-  height: "85px",
-  display: "flex",
-  paddingTop: "8px",
-  paddingBottom: "8px",
-  marginLeft: "auto",
-  marginRight: "auto",
-});
-const LinkBoxStyle = css({
-  hideBelow: "header_sm",
-  width: "100%",
-  maxWidth: "200px",
-  color: "star",
-  fontSize: "16px",
-  marginLeft: "40px",
-});
-const creditStyle = css({
-  hideBelow: "header_sm",
-  width: "100%",
-  color: "star",
-  fontSize: "16px",
-  textAlign: "right",
-  paddingTop: "48px",
 });
 const ImageWrapper = css({
-  width: "290px",
-  height: "75px",
+  display: "block",
+  width: "170px",
+  marginLeft: "auto",
+  marginRight: "auto",
+  marginTop: "15.17px",
+  marginBottom: "15.17px",
 });
 
 export default Header;
