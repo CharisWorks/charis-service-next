@@ -1,6 +1,5 @@
 import * as React from "react";
 import { MeiliItemHit } from "@/api/meili";
-import Image from "next/image";
 import Link from "next/link";
 import { css } from "../../../../styled-system/css";
 

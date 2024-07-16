@@ -57,7 +57,7 @@ const ItemPage = ({ params }: { params: { slug: string } }) => {
           <Header />
           <div className={containerStyle}>
             <div className={ItemStyle}>
-              <div className={mainStyle}>
+              <div className={mainPcStyle}>
                 <div className={mainImageStyle}>
                   {typeof item?.images !== "undefined" ? (
                     <ItemImages imageArray={item?.images} />
@@ -73,9 +73,7 @@ const ItemPage = ({ params }: { params: { slug: string } }) => {
                     <p className={tagStyle}>長さ: {item?.tags[1]}</p>
                   </div>
                   <div className={stockAndPriceWrapperStyle}>
-                    <h3 className={stockStyle}>
-                      在庫: {item?.stock}個 (n → ∞)
-                    </h3>
+                    <h3 className={stockStyle}>在庫: {item?.stock}個</h3>
                     <div className={priceWrapperStyle}>
                       <h2 className={priceStyle}>¥ {item?.price}</h2>
                       <p className={taxStyle}>税込</p>
@@ -125,6 +123,69 @@ const ItemPage = ({ params }: { params: { slug: string } }) => {
                   </div>
                 </div>
               </div>
+              {/*******************************************************************/}
+              <div className={mainMobileStyle}>
+                <div className={mainImageStyle}>
+                  {typeof item?.images !== "undefined" ? (
+                    <ItemImages imageArray={item?.images} />
+                  ) : (
+                    <p className={errorMessage}>Loading...</p>
+                  )}
+                </div>
+                <div className={mainContentMobileStyle}>
+                  <h1 className={itemNameMobileStyle}>{item?.item_name}</h1>
+                  <p className={workerStyle}>出品者: {item?.worker}</p>
+                  <div className={tagWrapperStyle}>
+                    <p className={tagStyle}>色: {item?.tags[0]}</p>
+                    <p className={tagStyle}>長さ: {item?.tags[1]}</p>
+                  </div>
+                  <div className={stockAndPriceWrapperStyle}>
+                    <h3 className={stockStyle}>在庫: {item?.stock}個</h3>
+                    <div className={priceWrapperStyle}>
+                      <h2 className={priceStyle}>¥ {item?.price}</h2>
+                      <p className={taxStyle}>税込</p>
+                    </div>
+                  </div>
+                  <div className={purchaseAndSelectWrapperMobileStyle}>
+                    <div className={selectInnerStyle}>
+                      <p className={quantityStyle}>数量</p>
+                      <select
+                        ref={quantityRef}
+                        value={quantity}
+                        onChange={selectQuantity}
+                        className={selectStyle}
+                      >
+                        {quantityArray.map((quantity, index) => (
+                          <option value={quantity} key={index}>
+                            {quantity}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className={purchaseButtonWrapperStyle}>
+                      {purchaseValidation ? (
+                        <Button
+                          name="購入"
+                          clickHandler={async () => {
+                            if (item?.id) {
+                              const p = {
+                                itemId: parseInt(item.id),
+                                quantity,
+                              };
+                              const data = await Checkout(p);
+                              if (data.data?.url) {
+                                router.push(data.data.url);
+                              }
+                            }
+                          }}
+                        />
+                      ) : (
+                        <SoldOutButton name="SOLD OUT" />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
               <Description overview={item?.description ?? ""} />
             </div>
           </div>
@@ -157,20 +218,44 @@ const ItemStyle = css({
   border: "3px solid #BFA45E",
   boxShadow: "8px 8px 0px 0px #002D52, 8px 8px 0px 3px #BFA45E",
 });
-const mainStyle = css({
+//pc
+const mainPcStyle = css({
+  hideBelow: "item_xl",
   display: "flex",
   marginBottom: "50px",
 });
-const mainImageStyle = css({
-  width: "412px",
+//mobile
+const mainMobileStyle = css({
+  hideFrom: "item_xl",
+  marginBottom: "50px",
 });
+//pc
 const mainContentStyle = css({
   width: "612px",
   color: "star",
   paddingLeft: "30px",
 });
+//mobile
+const mainContentMobileStyle = css({
+  width: "100%",
+  maxWidth: "800px",
+  color: "star",
+  marginLeft: "auto",
+  marginRight: "auto",
+});
+//pc
 const itemNameStyle = css({
   fontSize: "40px",
+});
+//mobile
+const itemNameMobileStyle = css({
+  marginTop: "40px",
+  fontSize: "30px",
+  textAlign: "center",
+});
+
+const mainImageStyle = css({
+  width: "412px",
 });
 const workerStyle = css({
   fontSize: "16px",
@@ -202,10 +287,18 @@ const stockAndPriceWrapperStyle = css({
   justifyContent: "space-between",
   paddingBottom: "12px",
 });
+//pc
 const purchaseAndSelectWrapperStyle = css({
   width: "100%",
   marginLeft: "auto",
   marginRight: "auto",
+  display: "flex",
+});
+//mobile
+const purchaseAndSelectWrapperMobileStyle = css({
+  width: "410px",
+
+  marginLeft: "auto",
   display: "flex",
 });
 const selectStyle = css({

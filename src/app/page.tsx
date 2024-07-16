@@ -7,21 +7,9 @@ import TopHeader from "./_components/TopHeader";
 import GenreButton from "./_components/GenreButton";
 import Loading from "./_components/Loading";
 import { css } from "../../styled-system/css";
-import { defineConfig } from "@pandacss/dev";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-defineConfig({
-  theme: {
-    extend: {
-      breakpoints: {
-        sm: "980px",
-        md: "1140px",
-        lg: "1320px",
-        xl: "1480px",
-      },
-    },
-  },
-});
+
 const Home = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -169,7 +157,6 @@ const Home = () => {
                     return <Card key={index} item={item} />;
                   })}
                 </div>
-
               </div>
             ) : (
               <>
