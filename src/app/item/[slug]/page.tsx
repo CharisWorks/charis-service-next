@@ -42,110 +42,6 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
   }, [quantityArray]);
   const router = useRouter();
 
-  const errorMessage = css({
-    color: "star",
-    fontSize: "20px",
-    textAlign: "center",
-  });
-  const containerStyle = css({
-    bgColor: "night",
-    width: "100%",
-    maxWidth: "1055px",
-    minHeight: "100lvh",
-    paddingTop: "185px",
-    paddingBottom: "100px",
-    paddingRight: "21px",
-    paddingLeft: "10px",
-    marginLeft: "auto",
-    marginRight: "auto",
-  });
-  const ItemStyle = css({
-    width: "100%",
-    padding: "20px",
-    border: "3px solid #BFA45E",
-    boxShadow: "8px 8px 0px 0px #002D52, 8px 8px 0px 3px #BFA45E",
-  });
-  const mainStyle = css({
-    display: "flex",
-    marginBottom: "50px",
-  });
-  const mainImageStyle = css({
-    width: "412px",
-  });
-  const mainContentStyle = css({
-    width: "612px",
-    color: "star",
-    paddingLeft: "30px",
-  });
-  const itemNameStyle = css({
-    fontSize: "40px",
-  });
-  const workerStyle = css({
-    fontSize: "16px",
-  });
-  const tagWrapperStyle = css({
-    marginTop: "52px",
-  });
-  const tagStyle = css({
-    fontSize: "18px",
-  });
-  const priceWrapperStyle = css({
-    display: "flex",
-  });
-  const stockStyle = css({
-    fontSize: "24px",
-    marginTop: "auto",
-    marginBottom: "13px",
-  });
-  const priceStyle = css({
-    fontSize: "48px",
-  });
-  const taxStyle = css({
-    marginTop: "auto",
-    marginBottom: "auto",
-    paddingLeft: "10px",
-  });
-  const stockAndPriceWrapperStyle = css({
-    display: "flex",
-    justifyContent: "space-between",
-    paddingBottom: "12px",
-  });
-  const purchaseAndSelectWrapperStyle = css({
-    width: "100%",
-    marginLeft: "auto",
-    marginRight: "auto",
-    display: "flex",
-  });
-  const selectStyle = css({
-    color: "star",
-    width: "205px",
-    height: "42.5px",
-    fontSize: "16px",
-    cursor: "pointer",
-    border: "3px solid #BFA45E",
-    textAlign: "center",
-  });
-  const selectWrapperStyle = css({
-    flexGrow: "1",
-  });
-  const purchaseButtonWrapperStyle = css({
-    flexGrow: "1",
-    marginTop: "30px",
-  });
-  const purchaseButtonInnerStyle = css({
-    width: "fit-content",
-    marginLeft: "auto",
-    marginRight: "auto",
-  });
-  const selectInnerStyle = css({
-    width: "fit-content",
-    marginLeft: "auto",
-    marginRight: "auto",
-  });
-  const quantityStyle = css({
-    fontSize: "20px",
-  });
-
   return (
     <>
       <Header />
@@ -220,3 +116,107 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
     </>
   );
 }
+
+const errorMessage = css({
+  color: "star",
+  fontSize: "20px",
+  textAlign: "center",
+});
+const containerStyle = css({
+  bgColor: "night",
+  width: "100%",
+  maxWidth: "1055px",
+  minHeight: "100lvh",
+  paddingTop: "185px",
+  paddingBottom: "100px",
+  paddingRight: "21px",
+  paddingLeft: "10px",
+  marginLeft: "auto",
+  marginRight: "auto",
+});
+const ItemStyle = css({
+  width: "100%",
+  padding: "20px",
+  border: "3px solid #BFA45E",
+  boxShadow: "8px 8px 0px 0px #002D52, 8px 8px 0px 3px #BFA45E",
+});
+const mainStyle = css({
+  display: "flex",
+  marginBottom: "50px",
+});
+const mainImageStyle = css({
+  width: "412px",
+});
+const mainContentStyle = css({
+  width: "612px",
+  color: "star",
+  paddingLeft: "30px",
+});
+const itemNameStyle = css({
+  fontSize: "40px",
+});
+const workerStyle = css({
+  fontSize: "16px",
+});
+const tagWrapperStyle = css({
+  marginTop: "52px",
+});
+const tagStyle = css({
+  fontSize: "18px",
+});
+const priceWrapperStyle = css({
+  display: "flex",
+});
+const stockStyle = css({
+  fontSize: "24px",
+  marginTop: "auto",
+  marginBottom: "13px",
+});
+const priceStyle = css({
+  fontSize: "48px",
+});
+const taxStyle = css({
+  marginTop: "auto",
+  marginBottom: "auto",
+  paddingLeft: "10px",
+});
+const stockAndPriceWrapperStyle = css({
+  display: "flex",
+  justifyContent: "space-between",
+  paddingBottom: "12px",
+});
+const purchaseAndSelectWrapperStyle = css({
+  width: "100%",
+  marginLeft: "auto",
+  marginRight: "auto",
+  display: "flex",
+});
+const selectStyle = css({
+  color: "star",
+  width: "205px",
+  height: "42.5px",
+  fontSize: "16px",
+  cursor: "pointer",
+  border: "3px solid #BFA45E",
+  textAlign: "center",
+});
+const selectWrapperStyle = css({
+  flexGrow: "1",
+});
+const purchaseButtonWrapperStyle = css({
+  flexGrow: "1",
+  marginTop: "30px",
+});
+const purchaseButtonInnerStyle = css({
+  width: "fit-content",
+  marginLeft: "auto",
+  marginRight: "auto",
+});
+const selectInnerStyle = css({
+  width: "fit-content",
+  marginLeft: "auto",
+  marginRight: "auto",
+});
+const quantityStyle = css({
+  fontSize: "20px",
+});
