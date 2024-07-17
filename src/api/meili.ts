@@ -20,7 +20,7 @@ const meiliFetcher = async (url: string) => {
 }
 
 export const Search = async (params?: string[]) => {
-    const rawURL = new URL(`${meili_address}:${meili_port}`)
+    const rawURL = new URL(meili_address ?? `${meili_address}:${meili_port}`)
     rawURL.pathname = '/indexes/items/search'
     console.log("params:", params)
     for (const param of params ?? []) {

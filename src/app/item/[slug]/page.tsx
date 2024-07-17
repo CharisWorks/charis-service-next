@@ -87,7 +87,7 @@ export default function ItemPage({ params }: { params: { slug: string } }) {
         <FormControl sx={{ width: "50%" }}>
           <InputLabel>数量</InputLabel>
           <Select
-            value={1}
+            defaultValue={1}
             label="数量"
             onChange={(e) => {
               setQuantity(e.target.value as number);
