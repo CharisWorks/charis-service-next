@@ -5,6 +5,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Header from "../_components/Header";
 import Loading from "../_components/Loading";
+import Footer from "../_components/Footer";
 
 const term = `
 # 個人情報保護方針（プライバシーポリシー）
@@ -85,6 +86,7 @@ const Terms = () => {
           {term}
         </Markdown>
       </div>
+      <Footer />
     </>
   );
 };

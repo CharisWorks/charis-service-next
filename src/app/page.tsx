@@ -9,6 +9,7 @@ import { css } from "../../styled-system/css";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { defineConfig } from "@pandacss/dev";
+import Footer from "./_components/Footer";
 defineConfig({
   theme: {
     extend: {
@@ -179,6 +180,7 @@ const Home = () => {
               </>
             )}
           </div>
+          <Footer />
         </>
       )}
     </>

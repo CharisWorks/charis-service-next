@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../_components/Header";
 import { css } from "../../../styled-system/css";
 import Loading from "../_components/Loading";
+import Footer from "../_components/Footer";
 
 const faq: { question: string; answer: string }[] = [
   {
@@ -41,6 +42,7 @@ const Faq = () => {
           );
         })}
       </div>
+      <Footer />
     </>
   );
 };

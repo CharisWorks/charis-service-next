@@ -31,7 +31,8 @@ export default defineConfig({
         },
       },
       breakpoints: {
-        header_sm: "1230px",
+        footer_lg: "530px",
+        footer_xl: "730px",
         item_md: "500px",
         item_lg: "559px",
         item_xl: "1069px",

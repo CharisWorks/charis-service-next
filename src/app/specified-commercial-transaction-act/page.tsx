@@ -5,6 +5,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Header from "../_components/Header";
 import Loading from "../_components/Loading";
+import Footer from "../_components/Footer";
 
 const term = `
 |項目|説明|
@@ -141,6 +142,7 @@ const Terms = () => {
           {term}
         </Markdown>
       </div>
+      <Footer />
     </>
   );
 };

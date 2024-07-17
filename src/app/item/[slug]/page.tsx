@@ -6,11 +6,12 @@ import { MeiliItemHit } from "@/api/meili";
 import { Checkout, GetItem } from "@/api/gobackend";
 import { css } from "../../../../styled-system/css";
 import Header from "../../_components/Header";
-import Button from "@/app/_components/Button";
+import Button from "../../_components/Button";
 import SoldOutButton from "../../_components/SoldOutButton";
 import ItemImages from "../../_components/ItemImages";
 import Loading from "../../_components/Loading";
 import ItemImagesMobile from "../../_components/ItemImagesMobile";
+import Footer from "../../_components/Footer";
 
 const ItemPage = ({ params }: { params: { slug: string } }) => {
   const [item, setItems] = useState<MeiliItemHit>();
@@ -244,6 +245,7 @@ const ItemPage = ({ params }: { params: { slug: string } }) => {
               <Description overview={item?.description ?? ""} />
             </div>
           </div>
+          <Footer />
         </>
       )}
     </>
