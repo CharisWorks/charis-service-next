@@ -76,7 +76,7 @@ const Home = () => {
     keyword?: string;
     genre?: string;
   }) {
-    const url = new URL("http://localhost:3000");
+    const url = new URL(process.env.NEXT_PUBLIC_ADDRESS ?? "http://localhost:3000");
     if (keyword) {
       url.searchParams.set("q", keyword);
     } else {
