@@ -29,6 +29,7 @@ const Terms = () => {
     setTimeout(() => {
       setFadeOut(true);
     }, 1800);
+    window.scrollTo(0, 0);
   }, []);
   const containerStyle = css({
     bgColor: "night",

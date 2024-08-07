@@ -25,6 +25,7 @@ const Faq = () => {
     setTimeout(() => {
       setFadeOut(true);
     }, 1800);
+    window.scrollTo(0, 0);
   }, []);
 
   return (

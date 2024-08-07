@@ -25,6 +25,10 @@ const ItemPage = ({ params }: { params: { slug: string } }) => {
     setItems(data);
   };
   useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+  }, [params.slug]);
+  useEffect(() => {
     (async () => {
       await fetchItems();
     })();
