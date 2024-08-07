@@ -9,8 +9,8 @@ const font = Noto_Serif_JP({
 });
 
 export const metadata: Metadata = {
-  title: "charis WORKs",
-  description: "charis WORKs is a EC site.",
+  title: "charis WORKsへようこそ！",
+  description: "charis WORKsはブレスレットを始めとする雑貨を販売しています。",
   category: "shopping",
   icons: {
     icon: "/og-image.png",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "charis WORKs",
-    description: "charis WORKs is a EC site.",
+    description: "charis WORKsはブレスレットを始めとする雑貨を販売しています。",
     url: "https://beta.charis.works",
     siteName: "charis WORKs",
     type: "website",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "charis WORKs",
-    description: "charis WORKs is a EC site.",
+    description: "charis WORKsはブレスレットを始めとする雑貨を販売しています。",
     site: "1440559012378931205",
     creator: "@yuki_osada0808",
     creatorId: "1440559012378931205",

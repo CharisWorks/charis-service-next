@@ -9,4 +9,4 @@ RUN npm install
 RUN npm run prepare
 RUN npm run build
 
-CMD ["npm", "run","dev"]
+CMD ["npm", "run","start"]
