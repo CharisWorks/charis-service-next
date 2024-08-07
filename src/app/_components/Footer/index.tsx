@@ -16,7 +16,9 @@ const Footer = () => {
         />
       </Link>
       <div className={creditStyle}>
-        <a href="http://yukiosada.work/">designed by Myxogastria0808</a>
+        <div className={innerCreditStyle}>
+          <a href="http://yukiosada.work/">designed by Myxogastria0808</a>
+        </div>
       </div>
       {/*******************************************************************/}
       <div className={footerBoxStyle}>
@@ -111,6 +113,10 @@ const creditStyle = css({
   fontSize: "16px",
   width: "100%",
   textDecoration: "underline",
+});
+const innerCreditStyle = css({
+  width: "fit-content",
+  margin: "auto",
   _hover: {
     transitionDuration: "0.2s",
     opacity: "0.7",
