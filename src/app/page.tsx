@@ -10,6 +10,7 @@ import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { defineConfig } from "@pandacss/dev";
 import Footer from "./_components/Footer";
+
 defineConfig({
   theme: {
     extend: {
@@ -22,6 +23,7 @@ defineConfig({
     },
   },
 });
+
 const Home = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -76,7 +78,9 @@ const Home = () => {
     keyword?: string;
     genre?: string;
   }) {
-    const url = new URL(process.env.NEXT_PUBLIC_ADDRESS ?? "http://localhost:3000");
+    const url = new URL(
+      process.env.NEXT_PUBLIC_ADDRESS ?? "http://localhost:3000",
+    );
     if (keyword) {
       url.searchParams.set("q", keyword);
     } else {

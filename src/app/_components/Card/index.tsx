@@ -7,9 +7,13 @@ const ItemCard = (props: { item: MeiliItemHit }) => {
   return (
     <Link href={`/item/${props.item.id}`} scroll={false}>
       <div className={cardStyle}>
-        {/*////////////////*/}
-        <div className={soldOutFrameStyle}></div>
-        {/*////////////////*/}
+        {props.item.stock == 0 ? (
+          <div className={soldOutFrameStyle}>
+            <div className={soldOutStyle}>SOLD</div>
+          </div>
+        ) : (
+          <></>
+        )}
         <div
           style={{
             width: "150px",
@@ -45,6 +49,8 @@ const cardStyle = css({
     transitionDuration: "0.2s",
     transform: "translateY(-10px)",
   },
+  position: "relative",
+  overflow: "hidden",
 });
 const workerStyle = css({
   fontSize: "12px",
@@ -68,6 +74,22 @@ const itemNameStyle = css({
   color: "star",
 });
 //solod out
-const soldOutFrameStyle = css({});
+const soldOutFrameStyle = css({
+  bgColor: "red.600",
+  transform: "skew(45deg, -45deg)",
+  position: "absolute",
+  height: "60px",
+  top: "0px",
+  left: "-70px",
+  overflow: "hidden",
+});
+
+const soldOutStyle = css({
+  textAlign: "center",
+  fontSize: "18px",
+  marginTop: "30px",
+  width: "200px",
+  color: "star",
+});
 
 export default ItemCard;
