@@ -25,9 +25,8 @@ const ItemPage = ({ params }: { params: { slug: string } }) => {
     setItems(data);
   };
   useEffect(() => {
-      window.scrollTo(0, 0);
-    }, []);
-  }, [params.slug]);
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     (async () => {
       await fetchItems();
@@ -44,7 +43,7 @@ const ItemPage = ({ params }: { params: { slug: string } }) => {
   };
   const quantityArray: number[] = Array.from(
     { length: item?.stock ?? 0 },
-    (_, i) => i + 1
+    (_, i) => i + 1,
   );
   const [purchaseValidation, setPurchaseValidation] = useState<boolean>(false);
   useEffect(() => {

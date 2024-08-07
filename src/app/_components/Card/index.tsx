@@ -7,6 +7,9 @@ const ItemCard = (props: { item: MeiliItemHit }) => {
   return (
     <Link href={`/item/${props.item.id}`} scroll={false}>
       <div className={cardStyle}>
+        {/*////////////////*/}
+        <div className={soldOutFrameStyle}></div>
+        {/*////////////////*/}
         <div
           style={{
             width: "150px",
@@ -64,5 +67,7 @@ const itemNameStyle = css({
   fontWeight: 700,
   color: "star",
 });
+//solod out
+const soldOutFrameStyle = css({});
 
 export default ItemCard;
