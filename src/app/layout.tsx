@@ -2,7 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Noto_Serif_JP } from "next/font/google";
 import { css } from "../../styled-system/css";
-
+import { GoogleTagManager } from '@next/third-parties/google'
+import { GoogleAnalytics } from '@next/third-parties/google'
 const font = Noto_Serif_JP({
   weight: ["400"],
   subsets: ["latin"],
@@ -47,9 +48,11 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
     <html lang="ja">
+      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTAGID ?? ""} />
       <body className={font.className}>
         <div className={baseStyle}>{children}</div>
       </body>
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GID ?? ""} />
     </html>
   );
 };
