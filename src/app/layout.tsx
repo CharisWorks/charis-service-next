@@ -13,22 +13,22 @@ export const metadata: Metadata = {
   description: "charis WORKsはブレスレットを始めとする雑貨を販売しています。",
   category: "shopping",
   icons: {
-    icon: "/og-image.png",
-    shortcut: "/og-image.png",
-    apple: "/og-image.png",
+    icon: "https://charis.works/og-image.png",
+    shortcut: "https://charis.works/og-image.png",
+    apple: "https://charis.works/og-image.png",
     other: {
       rel: "apple-touch-icon-precomposed",
-      url: "/og-image.png",
+      url: "https://charis.works/og-image.png",
     },
   },
   openGraph: {
     title: "charis WORKs",
     description: "charis WORKsはブレスレットを始めとする雑貨を販売しています。",
-    url: "https://beta.charis.works",
+    url: "https://charis.works",
     siteName: "charis WORKs",
     type: "website",
 
-    images: "/og-image.png",
+    images: "https://charis.works/og-image.png",
   },
   twitter: {
     card: "summary_large_image",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     creator: "@yuki_osada0808",
     creatorId: "1440559012378931205",
     images: {
-      url: "/og-image.png",
+      url: "https://charis.works/og-image.png",
       alt: "charis WORKs",
     },
   },
