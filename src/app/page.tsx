@@ -127,7 +127,7 @@ const Home = () => {
             <div className={genreButtonStyle}>
               <div className={genreButtonInnerStyle}>
                 <GenreButton
-                  name="ブレスレッド"
+                  name="ブレスレット"
                   selected={genre === "bracelet"}
                   clickHandler={() => {
                     if (genre === "bracelet") {
