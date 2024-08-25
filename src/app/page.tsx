@@ -147,20 +147,20 @@ const Home = () => {
                 />
                 <div className={genreButtonSpaceStyle}></div>
                 <GenreButton
-                  name="リボン"
-                  selected={genre === "ribbon"}
+                  name="ネックレス"
+                  selected={genre === "neckless"}
                   clickHandler={() => {
-                    if (genre === "ribbon") {
+                    if (genre === "neckless") {
                       setGenre("");
                       routinghandler({
                         keyword: keyword,
                         genre: "",
                       });
                     } else {
-                      setGenre("ribbon");
+                      setGenre("neckless");
                       routinghandler({
                         keyword: keyword,
-                        genre: "ribbon",
+                        genre: "neckless",
                       });
                     }
                   }}
